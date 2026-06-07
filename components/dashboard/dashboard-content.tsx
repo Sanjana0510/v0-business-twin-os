@@ -1,7 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Zap, TrendingUp, AlertCircle, Lightbulb, BarChart3, Clock, Activity } from 'lucide-react';
+import { Zap, TrendingUp, AlertCircle, Lightbulb, BarChart3 } from 'lucide-react';
+import { HeroCommandCenter } from '@/components/dashboard/hero-command-center';
 import { KPICard } from '@/components/dashboard/kpi-card';
 import { ChartCard } from '@/components/dashboard/chart-card';
 import { Button } from '@/components/ui/button';
@@ -29,79 +30,8 @@ export default function DashboardContent() {
 
   return (
     <div className="w-full bg-background">
-      {/* Hero Section */}
-      <motion.section
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.1 }}
-        className="border-b border-border bg-gradient-to-br from-background to-background/50"
-      >
-        <div className="max-w-full mx-auto px-6 py-6 sm:py-8">
-          {/* Header with Title and Status */}
-          <div className="grid grid-cols-12 gap-6">
-            {/* Title and Summary */}
-            <div className="col-span-12 lg:col-span-8">
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15 }}
-              >
-                <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-2">
-                  Executive Dashboard
-                </h1>
-                <p className="text-sm text-muted-foreground max-w-xl">
-                  Your business is performing exceptionally well. Revenue is trending upward with a 23% increase this month. Customer acquisition continues to be strong with 1,247 active users.
-                </p>
-              </motion.div>
-            </div>
-
-            {/* Health Score Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="col-span-12 lg:col-span-4"
-            >
-              <div className="glass-card p-4 sm:p-6 h-full flex flex-col justify-between">
-                <div className="flex items-start justify-between mb-4">
-                  <div>
-                    <p className="text-sm text-muted-foreground mb-1">Business Health Score</p>
-                    <p className="text-3xl font-bold text-foreground">94<span className="text-lg">/100</span></p>
-                  </div>
-                  <Activity className="w-6 h-6 text-primary" />
-                </div>
-                <div className="w-full bg-background/50 rounded-full h-2 overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: '94%' }}
-                    transition={{ delay: 0.5, duration: 1 }}
-                    className="h-full bg-gradient-to-r from-primary to-secondary rounded-full"
-                  />
-                </div>
-                <p className="text-xs text-muted-foreground mt-3">Excellent condition</p>
-              </div>
-            </motion.div>
-
-            {/* Last Sync Info */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25 }}
-              className="col-span-12 mt-4"
-            >
-              <div className="flex items-center justify-between px-4 py-3 rounded-lg bg-white/5 border border-white/10">
-                <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <Clock className="w-4 h-4" />
-                  <span>Last synced: 2 minutes ago</span>
-                </div>
-                <Button variant="ghost" size="sm" className="text-xs h-7">
-                  Sync Now
-                </Button>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
+      {/* Executive Command Center Hero */}
+      <HeroCommandCenter />
 
       {/* Main Content */}
       <div className="max-w-full px-6 py-6 sm:py-8">
