@@ -6,10 +6,9 @@ import {
   Search,
   Bell,
   Command,
-  Sun,
-  Moon,
   Palette,
   ChevronDown,
+  Menu,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -28,13 +27,13 @@ function TopNavContent() {
     <motion.header
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="fixed top-0 left-0 right-0 h-16 glass-dark border-b border-white/10 flex items-center justify-between px-6 z-20"
+      className="h-16 border-b border-border flex items-center justify-between px-6 bg-background/50 backdrop-blur-sm sticky top-0 z-10"
     >
       {/* Left Section - Search */}
-      <div className="hidden lg:flex items-center gap-4 flex-1">
+      <div className="flex items-center gap-4 flex-1">
         <motion.div
-          animate={{ width: showSearch ? 300 : 200 }}
-          className="relative"
+          animate={{ width: showSearch ? 300 : 250 }}
+          className="relative hidden sm:block"
         >
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
           <Input
@@ -44,12 +43,17 @@ function TopNavContent() {
             onBlur={() => setShowSearch(false)}
           />
         </motion.div>
+
+        {/* Mobile Menu Icon */}
+        <Button variant="ghost" size="icon" className="md:hidden">
+          <Menu className="w-5 h-5" />
+        </Button>
       </div>
 
       {/* Right Section */}
       <div className="flex items-center gap-2">
         {/* Keyboard Shortcut */}
-        <div className="hidden md:flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs text-muted-foreground">
+        <div className="hidden lg:flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-xs text-muted-foreground">
           <Command className="w-3 h-3" />
           <span>K</span>
         </div>
@@ -73,7 +77,7 @@ function TopNavContent() {
             className="flex items-center gap-1"
           >
             <Palette className="w-5 h-5" />
-            <ChevronDown className="w-3 h-3 opacity-50" />
+            <ChevronDown className="w-3 h-3 opacity-50 hidden sm:block" />
           </Button>
 
           {showThemeMenu && (
@@ -104,7 +108,7 @@ function TopNavContent() {
         </div>
 
         {/* Profile */}
-        <Button variant="ghost" size="icon" className="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-secondary">
+        <Button variant="ghost" size="icon" className="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-secondary hover:opacity-90">
           <span className="text-white font-semibold text-sm">J</span>
         </Button>
       </div>
@@ -124,7 +128,7 @@ export function TopNav() {
       <motion.header
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        className="fixed top-0 left-0 right-0 h-16 glass-dark border-b border-white/10 flex items-center justify-between px-6 z-20"
+        className="h-16 border-b border-border flex items-center justify-between px-6 bg-background/50 backdrop-blur-sm sticky top-0 z-10"
       />
     );
   }

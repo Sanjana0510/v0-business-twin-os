@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
@@ -10,9 +9,6 @@ import {
   Zap,
   Settings,
   LogOut,
-  ChevronRight,
-  Menu,
-  X,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -29,125 +25,88 @@ const bottomItems = [
 ];
 
 export function Sidebar() {
-  const [isOpen, setIsOpen] = useState(true);
-  const [isMobileOpen, setIsMobileOpen] = useState(false);
-
   return (
-    <>
-      {/* Mobile Toggle */}
-      <Button
-        variant="ghost"
-        size="icon"
-        className="fixed top-4 left-4 z-40 lg:hidden"
-        onClick={() => setIsMobileOpen(!isMobileOpen)}
+    <motion.aside
+      initial={{ x: -256 }}
+      animate={{ x: 0 }}
+      className="hidden md:flex flex-col w-64 h-screen border-r border-border bg-background/50 backdrop-blur-sm overflow-y-auto sticky top-0"
+    >
+      {/* Logo */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.1 }}
+        className="flex items-center gap-3 px-6 py-6 border-b border-border"
       >
-        {isMobileOpen ? <X /> : <Menu />}
-      </Button>
+        <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary">
+          <span className="text-white font-bold text-lg">T</span>
+        </div>
+        <div className="flex-1">
+          <h2 className="text-lg font-bold text-foreground">Twin OS</h2>
+          <p className="text-xs text-muted-foreground">Business Intelligence</p>
+        </div>
+      </motion.div>
 
-      {/* Sidebar */}
-      <motion.aside
-        initial={false}
-        animate={{
-          width: isOpen ? 280 : 100,
-          x: isMobileOpen ? 0 : -280,
-        }}
-        transition={{ duration: 0.3 }}
-        className="fixed left-0 top-0 h-screen glass-dark border-r border-white/10 flex flex-col justify-between p-4 z-30 lg:relative lg:translate-x-0"
-      >
-        {/* Logo */}
-        <div className="space-y-6">
-          <motion.div
-            animate={{ scale: isOpen ? 1 : 0.8 }}
-            className="flex items-center gap-3 px-2"
-          >
-            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-              <Brain className="w-6 h-6 text-white" />
-            </div>
-            {isOpen && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.1 }}
-                className="flex flex-col"
-              >
-                <span className="font-bold text-sm text-foreground">Twin OS</span>
-                <span className="text-xs text-muted-foreground">Enterprise</span>
-              </motion.div>
-            )}
-          </motion.div>
+      {/* Main Navigation */}
+      <nav className="flex-1 px-4 py-6 space-y-2">
+        {navItems.map((item, i) => {
+          const Icon = item.icon;
+          const isActive = i === 0;
 
-          {/* Navigation */}
-          <nav className="space-y-2">
-            {navItems.map((item, i) => (
-              <motion.div
-                key={item.label}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.05 }}
-              >
-                <Link
-                  href={item.href}
-                  className={`group flex items-center gap-3 px-4 py-3 rounded-lg transition-all ${
-                    item.label === 'Dashboard'
-                      ? 'bg-primary/20 text-primary border border-primary/30'
-                      : 'text-muted-foreground hover:bg-white/10'
+          return (
+            <motion.div
+              key={item.label}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 + i * 0.05 }}
+            >
+              <Link href={item.href}>
+                <button
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-sm font-medium ${
+                    isActive
+                      ? 'bg-primary/20 text-primary border border-primary/40'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-white/5 border border-transparent'
                   }`}
                 >
-                  <item.icon className="w-5 h-5 flex-shrink-0" />
-                  {isOpen && (
-                    <motion.span
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="text-sm font-medium"
-                    >
-                      {item.label}
-                    </motion.span>
-                  )}
-                  {isOpen && item.label === 'Dashboard' && (
-                    <ChevronRight className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" />
-                  )}
-                </Link>
-              </motion.div>
-            ))}
-          </nav>
-        </div>
+                  <Icon className="w-4 h-4 flex-shrink-0" />
+                  <span>{item.label}</span>
+                </button>
+              </Link>
+            </motion.div>
+          );
+        })}
+      </nav>
 
-        {/* Bottom Section */}
-        <div className="space-y-2">
-          {bottomItems.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="group flex items-center gap-3 px-4 py-3 rounded-lg text-muted-foreground hover:bg-white/10 transition-all"
-            >
-              <item.icon className="w-5 h-5 flex-shrink-0" />
-              {isOpen && (
-                <span className="text-sm font-medium">{item.label}</span>
-              )}
+      {/* Bottom Navigation */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="border-t border-border px-4 py-4 space-y-2"
+      >
+        {bottomItems.map((item) => {
+          const Icon = item.icon;
+
+          return (
+            <Link key={item.label} href={item.href}>
+              <button className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-white/5 transition-all border border-transparent">
+                <Icon className="w-4 h-4 flex-shrink-0" />
+                <span>{item.label}</span>
+              </button>
             </Link>
-          ))}
-        </div>
+          );
+        })}
+      </motion.div>
 
-        {/* Collapse Toggle */}
-        {!isMobileOpen && (
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="absolute -right-3 top-1/2 -translate-y-1/2 bg-card border border-white/10 rounded-full p-1.5 hover:bg-white/10 transition-all"
-          >
-            <ChevronRight
-              className={`w-4 h-4 transition-transform ${!isOpen ? 'rotate-180' : ''}`}
-            />
-          </button>
-        )}
-      </motion.aside>
-
-      {/* Mobile Overlay */}
-      {isMobileOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-20 lg:hidden"
-          onClick={() => setIsMobileOpen(false)}
-        />
-      )}
-    </>
+      {/* Footer Info */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.35 }}
+        className="px-4 py-4 border-t border-border text-xs text-muted-foreground"
+      >
+        <p className="text-center">v1.0.0</p>
+      </motion.div>
+    </motion.aside>
   );
 }
