@@ -90,7 +90,7 @@ function ChartCardContent({ title, subtitle, data, type, lines, index }: ChartCa
               type="monotone"
               dataKey={line.key}
               stroke={chartColors[i % chartColors.length]}
-              fill={type === 'area' ? 'url(#colorGradient)' : 'none'}
+              fill={type === 'area' ? 'url(#colorGradient)' : (type === 'bar' ? chartColors[i % chartColors.length] : 'none')}
               strokeWidth={2}
               dot={false}
               name={line.name}
