@@ -4,9 +4,14 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
   LayoutDashboard,
-  BarChart3,
+  Lightbulb,
+  TrendingUp,
   Brain,
+  FileText,
+  BarChart3,
+  Users,
   Zap,
+  Database,
   Settings,
   LogOut,
 } from 'lucide-react';
@@ -14,9 +19,14 @@ import { Button } from '@/components/ui/button';
 
 const navItems = [
   { icon: LayoutDashboard, label: 'Dashboard', href: '#' },
-  { icon: BarChart3, label: 'Analytics', href: '#' },
-  { icon: Brain, label: 'AI Insights', href: '#' },
-  { icon: Zap, label: 'Performance', href: '#' },
+  { icon: Brain, label: 'AI Boardroom', href: '#' },
+  { icon: Lightbulb, label: 'Recommendations', href: '#' },
+  { icon: Brain, label: 'Decision Memory', href: '#' },
+  { icon: FileText, label: 'Executive Reports', href: '#' },
+  { icon: TrendingUp, label: 'Forecasting', href: '#' },
+  { icon: Users, label: 'Team Intelligence', href: '#' },
+  { icon: Zap, label: 'Integrations', href: '#' },
+  { icon: Database, label: 'Data Hub', href: '#' },
 ];
 
 const bottomItems = [
