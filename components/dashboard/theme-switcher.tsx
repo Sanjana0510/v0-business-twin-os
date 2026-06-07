@@ -45,16 +45,16 @@ export function ThemeSwitcher() {
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.2 }}
             onClick={(e) => e.stopPropagation()}
-            className="absolute right-0 mt-3 w-80 max-h-96 overflow-hidden rounded-2xl bg-slate-900 border border-slate-700 shadow-2xl z-50"
+            className="absolute right-0 mt-3 w-80 max-h-96 overflow-hidden rounded-2xl bg-slate-950 border border-slate-700 shadow-2xl z-[9999]"
           >
             {/* Header */}
-            <div className="sticky top-0 px-6 py-4 border-b border-slate-700 bg-slate-950 backdrop-blur-md">
+            <div className="sticky top-0 px-6 py-4 border-b border-slate-700 bg-slate-950">
               <p className="text-sm font-bold text-white">Choose Theme</p>
               <p className="text-xs text-slate-400 mt-1">Select your preferred visual style</p>
             </div>
 
             {/* Theme Grid */}
-            <div className="overflow-y-auto max-h-80 p-4 space-y-2">
+            <div className="overflow-y-auto max-h-80 p-4 space-y-2 bg-slate-950">
               {themeList.map((t, index) => {
                 const themeConfig = themes[t];
                 const isSelected = theme === t;
@@ -145,7 +145,7 @@ export function ThemeSwitcher() {
             </div>
 
             {/* Footer */}
-            <div className="sticky bottom-0 px-6 py-3 border-t border-slate-700 bg-slate-950 backdrop-blur-md text-center">
+            <div className="sticky bottom-0 px-6 py-3 border-t border-slate-700 bg-slate-950 text-center">
               <p className="text-xs text-slate-400">
                 Theme saved automatically
               </p>
@@ -160,7 +160,7 @@ export function ThemeSwitcher() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-40"
+          className="fixed inset-0 z-[9998] backdrop-blur-sm bg-black/40"
           onClick={() => setIsOpen(false)}
         />
       )}
