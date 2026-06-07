@@ -32,11 +32,18 @@ function ChartCardContent({ title, subtitle, data, type, lines, index }: ChartCa
   const { theme } = useTheme();
   const colors = themes[theme];
 
+  // Theme colors for lines and areas
   const chartColors = [
     colors.chart.line1,
     colors.chart.line2,
     colors.chart.line3,
     colors.chart.line4,
+  ];
+
+  // Bright blue colors for bars - ensures excellent visibility on dark backgrounds
+  const barColors = [
+    '#3b82f6', // Bright blue
+    '#0ea5e9', // Cyan blue
   ];
 
   const ChartComponent =
@@ -109,8 +116,8 @@ function ChartCardContent({ title, subtitle, data, type, lines, index }: ChartCa
                 key={line.key}
                 type="monotone"
                 dataKey={line.key}
-                stroke={chartColors[i % chartColors.length]}
-                fill={type === 'area' ? 'url(#colorGradient)' : (type === 'bar' ? chartColors[i % chartColors.length] : 'none')}
+                stroke={type === 'bar' ? barColors[i % barColors.length] : chartColors[i % chartColors.length]}
+                fill={type === 'area' ? 'url(#colorGradient)' : (type === 'bar' ? barColors[i % barColors.length] : 'none')}
                 strokeWidth={type === 'line' ? 3 : 2}
                 dot={false}
                 name={line.name}
