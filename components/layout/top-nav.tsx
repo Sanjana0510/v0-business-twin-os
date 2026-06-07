@@ -6,22 +6,14 @@ import {
   Search,
   Bell,
   Command,
-  Palette,
-  ChevronDown,
   Menu,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { useTheme } from '@/lib/theme-context';
-import { themes, themeNames } from '@/lib/themes';
-import type { Theme } from '@/lib/themes';
+import { ThemeSwitcher } from '@/components/dashboard/theme-switcher';
 
 function TopNavContent() {
-  const [showThemeMenu, setShowThemeMenu] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const { theme, setTheme } = useTheme();
-
-  const themeList = Object.keys(themes) as Theme[];
 
   return (
     <motion.header
@@ -69,43 +61,7 @@ function TopNavContent() {
         </Button>
 
         {/* Theme Switcher */}
-        <div className="relative">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setShowThemeMenu(!showThemeMenu)}
-            className="flex items-center gap-1"
-          >
-            <Palette className="w-5 h-5" />
-            <ChevronDown className="w-3 h-3 opacity-50 hidden sm:block" />
-          </Button>
-
-          {showThemeMenu && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="absolute right-0 mt-2 w-48 glass rounded-lg p-2 space-y-1 z-50"
-            >
-              {themeList.map((t) => (
-                <button
-                  key={t}
-                  onClick={() => {
-                    setTheme(t);
-                    setShowThemeMenu(false);
-                  }}
-                  className={`w-full text-left px-3 py-2 rounded-md text-sm transition-all ${
-                    theme === t
-                      ? 'bg-primary/30 text-primary border border-primary/50'
-                      : 'hover:bg-white/10 text-foreground'
-                  }`}
-                >
-                  {themeNames[t]}
-                </button>
-              ))}
-            </motion.div>
-          )}
-        </div>
+        <ThemeSwitcher />
 
         {/* Profile */}
         <Button variant="ghost" size="icon" className="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-secondary hover:opacity-90">

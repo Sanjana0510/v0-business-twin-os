@@ -132,23 +132,39 @@
 /* Glass Morphism Utilities */
 @layer components {
   .glass {
-    @apply relative backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl;
+    @apply relative rounded-2xl;
+    background-color: var(--theme-card-background, rgba(255, 255, 255, 0.1));
+    border-color: var(--theme-card-border, rgba(255, 255, 255, 0.2));
+    @apply border backdrop-blur-xl;
   }
 
   .glass-dark {
-    @apply relative backdrop-blur-xl bg-black/30 border border-white/10 rounded-2xl;
+    @apply relative backdrop-blur-xl border-2 rounded-2xl;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.1);
   }
 
   .glass-card {
-    @apply relative backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-6 shadow-2xl shadow-black/20;
+    @apply relative rounded-2xl p-6 border backdrop-blur-xl;
+    background-color: var(--theme-card-background, rgba(255, 255, 255, 0.1));
+    border-color: var(--theme-card-border, rgba(255, 255, 255, 0.2));
+    box-shadow: 0 25px 50px -12px var(--theme-card-shadow-color, rgba(0, 0, 0, 0.1));
   }
 
   .glass-subtle {
-    @apply backdrop-blur-md bg-white/5 border border-white/10 rounded-xl;
+    @apply backdrop-blur-md border rounded-xl;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
   }
 
   .glass-input {
-    @apply backdrop-blur-md bg-white/10 border border-white/20 rounded-lg px-4 py-2 text-foreground placeholder-foreground/60;
+    @apply backdrop-blur-md border rounded-lg px-4 py-2 text-foreground;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-input::placeholder {
+    @apply text-foreground/60;
   }
 
   .gradient-shine {

@@ -6,37 +6,40 @@ import { Theme, themes } from './themes';
 interface ThemeContextType {
   theme: Theme;
   setTheme: (theme: Theme) => void;
+  mounted: boolean;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+const DEFAULT_THEME: Theme = 'midnight-executive';
+const THEME_STORAGE_KEY = 'business-twin-theme';
+
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('midnight-executive');
+  const [theme, setThemeState] = useState<Theme>(DEFAULT_THEME);
   const [mounted, setMounted] = useState(false);
 
+  // Load theme from localStorage on mount
   useEffect(() => {
-    setMounted(true);
-    const stored = localStorage.getItem('business-twin-theme') as Theme | null;
+    const stored = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
     if (stored && stored in themes) {
       setThemeState(stored);
       applyTheme(stored);
     } else {
-      applyTheme('midnight-executive');
+      applyTheme(DEFAULT_THEME);
     }
+    setMounted(true);
   }, []);
 
   const setTheme = (newTheme: Theme) => {
-    setThemeState(newTheme);
-    localStorage.setItem('business-twin-theme', newTheme);
-    applyTheme(newTheme);
+    if (newTheme in themes) {
+      setThemeState(newTheme);
+      localStorage.setItem(THEME_STORAGE_KEY, newTheme);
+      applyTheme(newTheme);
+    }
   };
 
-  if (!mounted) {
-    return <>{children}</>;
-  }
-
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, setTheme, mounted }}>
       {children}
     </ThemeContext.Provider>
   );
@@ -51,9 +54,11 @@ export function useTheme() {
 }
 
 function applyTheme(theme: Theme) {
-  const colors = themes[theme];
+  const themeConfig = themes[theme];
+  const colors = themeConfig.colors;
   const root = document.documentElement;
 
+  // Apply colors
   Object.entries(colors).forEach(([key, value]) => {
     if (key === 'chart') {
       Object.entries(value).forEach(([chartKey, chartValue]) => {
@@ -63,5 +68,17 @@ function applyTheme(theme: Theme) {
       root.style.setProperty(`--${key}`, value);
     }
   });
+
+  // Apply theme-specific styling properties
+  root.style.setProperty('--theme-gradient-primary', themeConfig.gradient.primary);
+  root.style.setProperty('--theme-gradient-secondary', themeConfig.gradient.secondary);
+  root.style.setProperty('--theme-gradient-accent', themeConfig.gradient.accent);
+  root.style.setProperty('--theme-card-background', themeConfig.card.background);
+  root.style.setProperty('--theme-card-border', themeConfig.card.border);
+  root.style.setProperty('--theme-card-shadow-color', themeConfig.card.shadowColor);
+  root.style.setProperty('--theme-chart-background', themeConfig.chart.background);
+  root.style.setProperty('--theme-chart-grid-color', themeConfig.chart.gridColor);
+  root.style.setProperty('--theme-glass-blur', themeConfig.glass.blurStrength);
+  root.style.setProperty('--theme-glass-opacity', themeConfig.glass.opacity);
 }
 
