@@ -48,56 +48,78 @@ function ChartCardContent({ title, subtitle, data, type, lines, index }: ChartCa
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className="glass-card col-span-1"
+      className="relative group col-span-1"
     >
-      <div className="mb-6">
-        <h3 className="text-lg font-semibold text-foreground">{title}</h3>
-        {subtitle && <p className="text-sm text-muted-foreground mt-1">{subtitle}</p>}
-      </div>
+      {/* Background Layers for Premium Depth */}
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-slate-900/50 to-slate-800/50 border border-slate-700/50" />
 
-      <ResponsiveContainer width="100%" height={300}>
-        <ChartComponent data={data}>
-          <defs>
-            <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor={chartColors[0]} stopOpacity={0.3} />
-              <stop offset="95%" stopColor={chartColors[0]} stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <CartesianGrid
-            strokeDasharray="3 3"
-            stroke={colors.border}
-            vertical={false}
-          />
-          <XAxis
-            dataKey="name"
-            stroke={colors.mutedForeground}
-            style={{ fontSize: '12px' }}
-          />
-          <YAxis stroke={colors.mutedForeground} style={{ fontSize: '12px' }} />
-          <Tooltip
-            contentStyle={{
-              backgroundColor: colors.card,
-              border: `1px solid ${colors.border}`,
-              borderRadius: '8px',
-            }}
-            labelStyle={{ color: colors.foreground }}
-          />
-          {lines && lines.length > 1 && <Legend />}
+      {/* Main Card */}
+      <div className="relative backdrop-blur-xl rounded-2xl border border-slate-700/80 bg-slate-900/40 p-6 shadow-lg shadow-black/20 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 h-full">
+        <div className="mb-7">
+          <h3 className="text-lg font-bold text-white">{title}</h3>
+          {subtitle && <p className="text-sm text-slate-400 mt-2 font-medium">{subtitle}</p>}
+        </div>
 
-          {lines?.map((line, i) => (
-            <DataComponent
-              key={line.key}
-              type="monotone"
-              dataKey={line.key}
-              stroke={chartColors[i % chartColors.length]}
-              fill={type === 'area' ? 'url(#colorGradient)' : (type === 'bar' ? chartColors[i % chartColors.length] : 'none')}
-              strokeWidth={2}
-              dot={false}
-              name={line.name}
+        <ResponsiveContainer width="100%" height={300}>
+          <ChartComponent data={data}>
+            <defs>
+              <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor={chartColors[0]} stopOpacity={0.4} />
+                <stop offset="95%" stopColor={chartColors[0]} stopOpacity={0.05} />
+              </linearGradient>
+            </defs>
+            <CartesianGrid
+              strokeDasharray="0"
+              stroke={colors.border}
+              vertical={false}
+              strokeOpacity={0.1}
             />
-          ))}
-        </ChartComponent>
-      </ResponsiveContainer>
+            <XAxis
+              dataKey="name"
+              stroke={colors.mutedForeground}
+              style={{ fontSize: '12px', fontWeight: 500 }}
+              strokeOpacity={0.7}
+            />
+            <YAxis 
+              stroke={colors.mutedForeground} 
+              style={{ fontSize: '12px', fontWeight: 500 }}
+              strokeOpacity={0.7}
+            />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: `${colors.card}dd`,
+                border: `1px solid ${colors.border}`,
+                borderRadius: '12px',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
+                backdropFilter: 'blur(8px)',
+              }}
+              labelStyle={{ color: colors.foreground, fontWeight: 600 }}
+              cursor={{ stroke: colors.primary, strokeWidth: 2, strokeOpacity: 0.3 }}
+            />
+            {lines && lines.length > 1 && (
+              <Legend 
+                wrapperStyle={{ paddingTop: '16px' }}
+                iconType="line"
+              />
+            )}
+
+            {lines?.map((line, i) => (
+              <DataComponent
+                key={line.key}
+                type="monotone"
+                dataKey={line.key}
+                stroke={chartColors[i % chartColors.length]}
+                fill={type === 'area' ? 'url(#colorGradient)' : (type === 'bar' ? chartColors[i % chartColors.length] : 'none')}
+                strokeWidth={type === 'line' ? 3 : 2}
+                dot={false}
+                name={line.name}
+                isAnimationActive={true}
+              />
+            ))}
+          </ChartComponent>
+        </ResponsiveContainer>
+      </div>
     </motion.div>
   );
 }

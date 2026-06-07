@@ -34,30 +34,41 @@ export default function DashboardContent() {
       <HeroCommandCenter />
 
       {/* Main Content */}
-      <div className="max-w-full px-6 py-6 sm:py-8">
-        {/* Quick Actions */}
+      <div className="max-w-full px-6 py-8 sm:py-10">
+        {/* Quick Actions - Enhanced */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
-          className="grid grid-cols-12 gap-3 mb-8"
+          className="grid grid-cols-12 gap-4 mb-12"
         >
-          <Button className="col-span-12 sm:col-span-6 lg:col-span-3 gap-2 bg-gradient-to-r from-primary to-secondary hover:opacity-90">
-            <Zap className="w-4 h-4" />
+          <Button className="col-span-12 sm:col-span-6 lg:col-span-3 gap-2 bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/30 hover:scale-105 transition-all duration-300 h-11 font-semibold text-base">
+            <Zap className="w-5 h-5" />
             <span>Ask Copilot</span>
           </Button>
-          <Button variant="outline" className="col-span-12 sm:col-span-6 lg:col-span-3 gap-2">
-            <BarChart3 className="w-4 h-4" />
+          <Button variant="outline" className="col-span-12 sm:col-span-6 lg:col-span-3 gap-2 h-11 font-semibold text-base border-slate-700 hover:bg-slate-800 hover:shadow-lg transition-all duration-300">
+            <BarChart3 className="w-5 h-5" />
             <span>Generate Report</span>
           </Button>
-          <Button variant="outline" className="col-span-12 sm:col-span-6 lg:col-span-3 gap-2">
-            <TrendingUp className="w-4 h-4" />
+          <Button variant="outline" className="col-span-12 sm:col-span-6 lg:col-span-3 gap-2 h-11 font-semibold text-base border-slate-700 hover:bg-slate-800 hover:shadow-lg transition-all duration-300">
+            <TrendingUp className="w-5 h-5" />
             <span>Analyze Growth</span>
           </Button>
-          <Button variant="outline" className="col-span-12 sm:col-span-6 lg:col-span-3 gap-2">
-            <AlertCircle className="w-4 h-4" />
+          <Button variant="outline" className="col-span-12 sm:col-span-6 lg:col-span-3 gap-2 h-11 font-semibold text-base border-slate-700 hover:bg-slate-800 hover:shadow-lg transition-all duration-300">
+            <AlertCircle className="w-5 h-5" />
             <span>Detect Risks</span>
           </Button>
+        </motion.div>
+
+        {/* KPI Section Header */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.32 }}
+          className="mb-6"
+        >
+          <h2 className="text-2xl font-bold text-white">Key Performance Indicators</h2>
+          <p className="text-slate-400 text-sm mt-1">Real-time metrics across your business</p>
         </motion.div>
 
         {/* KPI Cards - 12 Column Grid */}
@@ -65,7 +76,7 @@ export default function DashboardContent() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.35 }}
-          className="grid grid-cols-12 gap-4 mb-8"
+          className="grid grid-cols-12 gap-6 mb-12"
         >
           {kpiData.map((kpi, i) => (
             <div key={i} className="col-span-12 sm:col-span-6 lg:col-span-3">
@@ -80,12 +91,23 @@ export default function DashboardContent() {
           ))}
         </motion.div>
 
+        {/* Charts Section Header */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.38 }}
+          className="mb-6"
+        >
+          <h2 className="text-2xl font-bold text-white">Analytics & Insights</h2>
+          <p className="text-slate-400 text-sm mt-1">Detailed performance analysis and forecasting</p>
+        </motion.div>
+
         {/* Charts Grid - 12 Column Layout */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="grid grid-cols-12 gap-6 mb-8"
+          className="grid grid-cols-12 gap-6 mb-12"
         >
           <div className="col-span-12 lg:col-span-6">
             <ChartCard
@@ -152,36 +174,45 @@ export default function DashboardContent() {
             transition={{ delay: 0.5 }}
             className="col-span-12 lg:col-span-8"
           >
-            <div className="glass-card p-6">
-              <div className="flex items-center gap-2 mb-6">
-                <AlertCircle className="w-5 h-5 text-accent" />
-                <h3 className="text-lg font-semibold text-foreground">
-                  Recent Alerts & Opportunities
-                </h3>
-              </div>
+            <div className="relative group">
+              {/* Background Layers */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-slate-900/50 to-slate-800/50 border border-slate-700/50" />
 
-              <div className="space-y-3">
-                {recentAlerts.map((alert, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.52 + i * 0.05 }}
-                    className="p-4 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-all cursor-pointer"
-                  >
-                    <div className="flex items-start gap-3">
-                      <span className="text-xl">{alert.icon}</span>
-                      <div className="flex-1">
-                        <p className="font-medium text-foreground text-sm">
-                          {alert.title}
-                        </p>
-                        <p className="text-xs text-muted-foreground mt-1">
-                          {alert.desc}
-                        </p>
+              {/* Main Card */}
+              <div className="relative backdrop-blur-xl rounded-2xl border border-slate-700/80 bg-slate-900/40 p-7 shadow-lg shadow-black/20 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300">
+                <div className="flex items-center gap-3 mb-7">
+                  <div className="p-2 rounded-lg bg-accent/20">
+                    <AlertCircle className="w-5 h-5 text-accent" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white">
+                    Recent Alerts & Opportunities
+                  </h3>
+                </div>
+
+                <div className="space-y-3">
+                  {recentAlerts.map((alert, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.52 + i * 0.05 }}
+                      className="p-4 rounded-xl bg-slate-800/40 border border-slate-700/60 hover:border-slate-600 hover:bg-slate-800/60 transition-all cursor-pointer group/alert"
+                    >
+                      <div className="flex items-start gap-4">
+                        <span className="text-2xl flex-shrink-0">{alert.icon}</span>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-semibold text-white text-sm">
+                            {alert.title}
+                          </p>
+                          <p className="text-xs text-slate-400 mt-1.5 leading-relaxed">
+                            {alert.desc}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>
@@ -193,50 +224,62 @@ export default function DashboardContent() {
             transition={{ delay: 0.55 }}
             className="col-span-12 lg:col-span-4"
           >
-            <div className="glass-card p-6 h-full">
-              <div className="flex items-center gap-2 mb-6">
-                <Lightbulb className="w-5 h-5 text-accent" />
-                <h3 className="text-lg font-semibold text-foreground">
-                  AI Insights
-                </h3>
-              </div>
+            <div className="relative group h-full">
+              {/* Background Layers */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-slate-900/50 to-slate-800/50 border border-slate-700/50" />
 
-              <div className="space-y-3">
-                <motion.div
-                  whileHover={{ x: 5 }}
-                  className="p-4 rounded-lg bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20 hover:border-primary/40 transition-all cursor-pointer"
-                >
-                  <p className="text-sm font-medium text-primary mb-1">
-                    Revenue Insight
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    Your Q3 pipeline looks strong.
-                  </p>
-                </motion.div>
+              {/* Main Card */}
+              <div className="relative backdrop-blur-xl rounded-2xl border border-slate-700/80 bg-slate-900/40 p-7 shadow-lg shadow-black/20 hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 h-full flex flex-col">
+                <div className="flex items-center gap-3 mb-7">
+                  <div className="p-2 rounded-lg bg-accent/20">
+                    <Lightbulb className="w-5 h-5 text-accent" />
+                  </div>
+                  <h3 className="text-lg font-bold text-white">
+                    AI Insights
+                  </h3>
+                </div>
 
-                <motion.div
-                  whileHover={{ x: 5 }}
-                  className="p-4 rounded-lg bg-gradient-to-br from-secondary/10 to-accent/10 border border-secondary/20 hover:border-secondary/40 transition-all cursor-pointer"
-                >
-                  <p className="text-sm font-medium text-secondary mb-1">
-                    Efficiency Alert
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    CAC decreased 12%.
-                  </p>
-                </motion.div>
+                <div className="space-y-3 flex-1">
+                  <motion.div
+                    whileHover={{ x: 5, y: -2 }}
+                    transition={{ duration: 0.2 }}
+                    className="p-4 rounded-xl bg-gradient-to-br from-primary/15 to-secondary/10 border border-primary/30 hover:border-primary/50 transition-all cursor-pointer shadow-lg shadow-primary/5"
+                  >
+                    <p className="text-sm font-bold text-primary mb-2">
+                      Revenue Insight
+                    </p>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      Your Q3 pipeline looks strong.
+                    </p>
+                  </motion.div>
 
-                <motion.div
-                  whileHover={{ x: 5 }}
-                  className="p-4 rounded-lg bg-gradient-to-br from-accent/10 to-primary/10 border border-accent/20 hover:border-accent/40 transition-all cursor-pointer"
-                >
-                  <p className="text-sm font-medium text-accent mb-1">
-                    Risk Signal
-                  </p>
-                  <p className="text-xs text-muted-foreground">
-                    Monitor segment C churn.
-                  </p>
-                </motion.div>
+                  <motion.div
+                    whileHover={{ x: 5, y: -2 }}
+                    transition={{ duration: 0.2 }}
+                    className="p-4 rounded-xl bg-gradient-to-br from-blue-500/15 to-cyan-500/10 border border-blue-500/30 hover:border-blue-500/50 transition-all cursor-pointer shadow-lg shadow-blue-500/5"
+                  >
+                    <p className="text-sm font-bold text-blue-300 mb-2">
+                      Efficiency Alert
+                    </p>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      CAC decreased 12%.
+                    </p>
+                  </motion.div>
+
+                  <motion.div
+                    whileHover={{ x: 5, y: -2 }}
+                    transition={{ duration: 0.2 }}
+                    className="p-4 rounded-xl bg-gradient-to-br from-amber-500/15 to-orange-500/10 border border-amber-500/30 hover:border-amber-500/50 transition-all cursor-pointer shadow-lg shadow-amber-500/5"
+                  >
+                    <p className="text-sm font-bold text-amber-300 mb-2">
+                      Risk Signal
+                    </p>
+                    <p className="text-xs text-slate-300 leading-relaxed">
+                      Monitor segment C churn.
+                    </p>
+                  </motion.div>
+                </div>
               </div>
             </div>
           </motion.div>
