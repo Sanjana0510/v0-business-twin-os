@@ -23,14 +23,15 @@ const navItems = [
   { icon: Brain, label: 'AI Boardroom', href: '/boardroom' },
   { icon: Lightbulb, label: 'Recommendations', href: '/recommendations' },
   { icon: FileText, label: 'Decision Memory', href: '/decisions' },
-  { icon: TrendingUp, label: 'Forecasting', href: '#' },
-  { icon: Users, label: 'Team Intelligence', href: '#' },
-  { icon: Zap, label: 'Integrations', href: '#' },
-  { icon: Database, label: 'Data Hub', href: '#' },
+  { icon: BarChart3, label: 'Executive Reports', href: '/reports' },
+  { icon: TrendingUp, label: 'Forecasting', href: '/forecasting' },
+  { icon: Users, label: 'Team Intelligence', href: '/team' },
+  { icon: Zap, label: 'Integrations', href: '/integrations' },
+  { icon: Database, label: 'Data Hub', href: '/data-hub' },
 ];
 
 const bottomItems = [
-  { icon: Settings, label: 'Settings', href: '#' },
+  { icon: Settings, label: 'Settings', href: '/settings' },
   { icon: LogOut, label: 'Logout', href: '#' },
 ];
 
