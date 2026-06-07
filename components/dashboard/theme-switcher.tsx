@@ -145,14 +145,14 @@ export function ThemeSwitcher() {
             </div>
 
             {/* Footer - System Status Indicator */}
-            <div className="sticky bottom-0 px-6 py-4 border-t-2 border-slate-700 bg-slate-800 shadow-inner text-center">
+            <div className="sticky bottom-0 px-6 py-4 border-t-2 border-slate-700 bg-slate-950 shadow-inner text-center">
               <div className="flex items-center justify-center gap-2">
                 <motion.div
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 2, repeat: Infinity }}
                   className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-lg shadow-emerald-500/50"
                 />
-                <p className="text-xs font-medium text-slate-100 tracking-wide">
+                <p className="text-xs font-medium text-slate-50 tracking-wide">
                   Theme saved automatically
                 </p>
               </div>
