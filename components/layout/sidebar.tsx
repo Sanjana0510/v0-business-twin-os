@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import {
   LayoutDashboard,
@@ -18,11 +19,10 @@ import {
 import { Button } from '@/components/ui/button';
 
 const navItems = [
-  { icon: LayoutDashboard, label: 'Dashboard', href: '#' },
-  { icon: Brain, label: 'AI Boardroom', href: '#' },
-  { icon: Lightbulb, label: 'Recommendations', href: '#' },
-  { icon: Brain, label: 'Decision Memory', href: '#' },
-  { icon: FileText, label: 'Executive Reports', href: '#' },
+  { icon: LayoutDashboard, label: 'Dashboard', href: '/' },
+  { icon: Brain, label: 'AI Boardroom', href: '/boardroom' },
+  { icon: Lightbulb, label: 'Recommendations', href: '/recommendations' },
+  { icon: FileText, label: 'Decision Memory', href: '/decisions' },
   { icon: TrendingUp, label: 'Forecasting', href: '#' },
   { icon: Users, label: 'Team Intelligence', href: '#' },
   { icon: Zap, label: 'Integrations', href: '#' },
@@ -35,6 +35,8 @@ const bottomItems = [
 ];
 
 export function Sidebar() {
+  const pathname = usePathname();
+
   return (
     <motion.aside
       initial={{ x: -256 }}
@@ -61,7 +63,7 @@ export function Sidebar() {
       <nav className="flex-1 px-4 py-6 space-y-2">
         {navItems.map((item, i) => {
           const Icon = item.icon;
-          const isActive = i === 0;
+          const isActive = pathname === item.href || (item.href === '/' && pathname === '/');
 
           return (
             <motion.div
