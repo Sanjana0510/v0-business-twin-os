@@ -42,13 +42,18 @@ export default function LoginPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="w-full max-w-md"
+        className="relative group w-full max-w-md"
       >
-        <div className="rounded-2xl bg-slate-900/40 backdrop-blur-xl border border-slate-700/50 p-8 shadow-2xl">
+        {/* Background layers for premium depth */}
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-slate-800/40 to-slate-700/40 border border-slate-700/50" />
+
+        {/* Main card */}
+        <div className="relative backdrop-blur-xl rounded-2xl border border-slate-700/80 bg-slate-900/60 p-8 shadow-2xl shadow-black/20">
           {/* Header */}
-          <div className="mb-8 text-center">
+          <div className="mb-8">
             <h1 className="text-2xl font-bold text-white mb-2">Welcome back</h1>
-            <p className="text-sm text-slate-400">Sign in to your account to continue</p>
+            <p className="text-sm text-slate-400">Sign in to your Business Twin OS account</p>
           </div>
 
           {/* Form */}
@@ -85,7 +90,7 @@ export default function LoginPage() {
                 <label className="block text-xs font-medium text-slate-300 uppercase tracking-wide">
                   Password
                 </label>
-                <Link href="/forgot-password" className="text-xs text-primary hover:text-primary/80 transition-colors font-medium">
+                <Link href="/forgot-password" className="text-xs text-primary hover:text-secondary transition-colors">
                   Forgot?
                 </Link>
               </div>
@@ -171,6 +176,16 @@ export default function LoginPage() {
           </motion.div>
         </div>
       </motion.div>
+
+      {/* Footer text */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.6 }}
+        className="text-center text-xs text-slate-500 mt-6"
+      >
+        Powered by Business Twin OS
+      </motion.p>
     </AuthLayout>
   );
 }

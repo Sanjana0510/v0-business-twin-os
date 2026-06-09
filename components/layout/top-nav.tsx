@@ -63,7 +63,7 @@ function TopNavContent() {
         {/* Theme Switcher */}
         <ThemeSwitcher />
 
-        {/* Profile */}
+        {/* User Profile */}
         <Button variant="ghost" size="icon" className="w-9 h-9 rounded-full bg-gradient-to-br from-primary to-secondary hover:opacity-90">
           <span className="text-white font-semibold text-sm">J</span>
         </Button>
