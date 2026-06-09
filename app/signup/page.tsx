@@ -43,16 +43,11 @@ export default function SignupPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="relative group"
+        className="w-full max-w-md"
       >
-        {/* Background layers for premium depth */}
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-slate-800/40 to-slate-700/40 border border-slate-700/50" />
-
-        {/* Main card */}
-        <div className="relative backdrop-blur-xl rounded-2xl border border-slate-700/80 bg-slate-900/60 p-8 shadow-2xl shadow-black/20">
+        <div className="rounded-2xl bg-slate-900/40 backdrop-blur-xl border border-slate-700/50 p-8 shadow-2xl">
           {/* Header */}
-          <div className="mb-8">
+          <div className="mb-8 text-center">
             <h1 className="text-2xl font-bold text-white mb-2">Join Business Twin OS</h1>
             <p className="text-sm text-slate-400">Create your company account and get instant access</p>
           </div>
