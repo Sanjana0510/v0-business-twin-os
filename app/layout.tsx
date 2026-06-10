@@ -1,3 +1,4 @@
+import { ClerkProvider } from '@clerk/nextjs'
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
@@ -41,11 +42,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} bg-background`}>
       <body className="font-sans antialiased bg-background text-foreground">
-        <ThemeProvider>
-          {children}
-          {process.env.NODE_ENV === 'production' && <Analytics />}
-        </ThemeProvider>
-      </body>
+      <ClerkProvider>
+      <ThemeProvider>
+      {children}
+      {process.env.NODE_ENV === 'production' && <Analytics />}
+      </ThemeProvider>
+    </ClerkProvider>
+</body>
     </html>
   )
 }
