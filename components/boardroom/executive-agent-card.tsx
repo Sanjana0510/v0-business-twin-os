@@ -109,3 +109,4 @@ export function ExecutiveAgentCard({ agent, index }: ExecutiveAgentCardProps) {
     </motion.div>
   );
 }
+
