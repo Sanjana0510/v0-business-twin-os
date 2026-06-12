@@ -48,14 +48,14 @@ export default function LoginPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.7 }}
-        className="w-full lg:w-1/2 flex flex-col items-center justify-center px-4 sm:px-8 md:px-12 py-8 sm:py-12 overflow-y-auto"
+        className="flex-1 flex flex-col items-center justify-center overflow-y-auto"
       >
         {/* Login Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="w-full max-w-md"
+          className="w-full max-w-md px-4 sm:px-8 md:px-12"
         >
           {/* Card Container */}
           <div className="bg-white rounded-2xl shadow-2xl shadow-black/40 p-8">
