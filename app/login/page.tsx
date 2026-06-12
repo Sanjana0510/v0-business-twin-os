@@ -2,203 +2,334 @@
 
 import { motion } from 'framer-motion';
 import { SignIn } from '@clerk/nextjs';
+import Image from 'next/image';
 import React from 'react';
 
 export default function LoginPage() {
   return (
-    <div className="relative min-h-screen w-full overflow-hidden bg-black">
-      {/* Premium Animated Gradient Background */}
+    <div className="relative min-h-screen w-full overflow-hidden bg-gradient-to-br from-slate-50 via-amber-50 to-neutral-100">
+      {/* Premium Animated Background Gradients */}
       <motion.div
         animate={{
-          opacity: [0.4, 0.7, 0.4],
-          scale: [1, 1.15, 1],
-          x: [0, 30, 0],
+          opacity: [0.15, 0.25, 0.15],
+          scale: [1, 1.1, 1],
         }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute -top-1/2 -left-1/2 w-[1200px] h-[1200px] bg-gradient-to-br from-purple-900/40 via-cyan-900/20 to-transparent rounded-full blur-3xl"
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute -top-40 -left-40 w-80 h-80 bg-gradient-to-br from-amber-300/40 via-yellow-200/20 to-transparent rounded-full blur-3xl"
       />
       
       <motion.div
         animate={{
-          opacity: [0.3, 0.6, 0.3],
-          scale: [1, 1.2, 1],
-          x: [0, -40, 0],
+          opacity: [0.1, 0.2, 0.1],
+          scale: [1, 1.15, 1],
         }}
-        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-        className="absolute -bottom-1/3 -right-1/4 w-[900px] h-[900px] bg-gradient-to-tl from-cyan-900/30 via-purple-900/20 to-transparent rounded-full blur-3xl"
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+        className="absolute -bottom-40 -right-40 w-96 h-96 bg-gradient-to-tl from-amber-200/30 to-transparent rounded-full blur-3xl"
       />
 
-      {/* Subtle Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:50px_50px] opacity-40" />
-
-      {/* Radial Spotlight Effect */}
-      <motion.div
-        animate={{
-          opacity: [0.15, 0.25, 0.15],
-        }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute inset-0 bg-radial-gradient pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%)',
-        }}
-      />
-
-      {/* Content Container */}
-      <div className="relative min-h-screen flex flex-col items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-        {/* Animated Top Decoration */}
-        <motion.div
-          animate={{ y: [0, -10, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-10 left-1/2 -translate-x-1/2 w-40 h-40 bg-gradient-to-br from-purple-500/10 to-cyan-500/10 rounded-full blur-2xl"
-        />
-
-        {/* Branding Section */}
-        <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.8 }}
-          className="mb-16 text-center z-10"
-        >
+      {/* Content Grid Layout */}
+      <div className="relative grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+        {/* LEFT SECTION: Premium Login Form */}
+        <div className="flex flex-col justify-center items-center px-6 sm:px-12 py-12 lg:py-0">
+          {/* Branding with Animation */}
           <motion.div
-            whileHover={{ scale: 1.08, rotate: -2 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-            className="flex items-center justify-center gap-4 mb-6 mx-auto w-fit"
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.8 }}
+            className="mb-12 w-full max-w-sm"
           >
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-cyan-500 rounded-xl blur-xl opacity-75" />
-              <div className="relative flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-purple-600 to-cyan-600 shadow-2xl">
-                <span className="text-white font-black text-2xl">T</span>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-3 mb-8"
+            >
+              <div className="relative">
+                <motion.div
+                  animate={{
+                    boxShadow: [
+                      '0 0 20px rgba(217, 119, 6, 0.3)',
+                      '0 0 40px rgba(217, 119, 6, 0.5)',
+                      '0 0 20px rgba(217, 119, 6, 0.3)',
+                    ],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-600 to-orange-600 flex items-center justify-center shadow-xl"
+                >
+                  <span className="text-white font-black text-2xl">T</span>
+                </motion.div>
+              </div>
+              <div>
+                <h1 className="text-2xl font-black text-neutral-900 leading-tight">Business Twin OS</h1>
+                <p className="text-xs font-semibold text-amber-600">AI Executive Intelligence</p>
+              </div>
+            </motion.div>
+
+            {/* Hero Text */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+            >
+              <h2 className="text-4xl lg:text-5xl font-black text-neutral-900 mb-4 leading-tight">
+                Welcome to your
+                <span className="block bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">AI Command Center</span>
+              </h2>
+              <p className="text-base font-medium text-neutral-600 mb-2">
+                Enter to access real-time business intelligence and strategic insights powered by AI.
+              </p>
+            </motion.div>
+          </motion.div>
+
+          {/* Luxury Login Card with Glassmorphism */}
+          <motion.div
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="w-full max-w-sm mb-8"
+          >
+            <div className="relative group">
+              {/* Premium Glow Border */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-amber-400/30 via-orange-400/20 to-amber-400/30 rounded-3xl blur-lg opacity-0 group-hover:opacity-100 transition-all duration-500" />
+
+              {/* Glassmorphism Card */}
+              <div className="relative rounded-3xl bg-white/80 backdrop-blur-xl border border-amber-200/40 shadow-2xl overflow-hidden">
+                {/* Subtle Background Pattern */}
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-50/40 via-transparent to-orange-50/30 pointer-events-none" />
+
+                {/* Card Content */}
+                <div className="relative p-8 sm:p-10">
+                  {/* Card Header */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.45, duration: 0.6 }}
+                    className="mb-8"
+                  >
+                    <h3 className="text-2xl font-black text-neutral-900 mb-2">Sign in</h3>
+                    <p className="text-sm font-medium text-neutral-600">Access your AI intelligence platform</p>
+                  </motion.div>
+
+                  {/* Clerk SignIn Component */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.55, duration: 0.6 }}
+                    className="clerk-signin-wrapper"
+                  >
+                    <SignIn
+                      appearance={{
+                        elements: {
+                          rootBox: 'w-full',
+                          card: 'bg-transparent shadow-none border-0 px-0',
+                          socialButtonsBlockButton:
+                            'w-full bg-gradient-to-r from-neutral-100 to-amber-50/50 border border-neutral-200 hover:from-neutral-50 hover:to-amber-100 text-neutral-700 hover:text-neutral-900 h-11 rounded-xl transition-all duration-200 font-semibold shadow-sm hover:shadow-md',
+                          formButtonPrimary:
+                            'w-full bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 hover:from-amber-700 hover:via-orange-700 hover:to-amber-800 text-white h-11 rounded-xl transition-all duration-300 font-bold shadow-lg hover:shadow-xl hover:shadow-amber-600/30',
+                          formFieldInput:
+                            'bg-neutral-50/80 border border-neutral-200 rounded-lg h-11 text-neutral-900 placeholder:text-neutral-400 focus:bg-white focus:border-amber-400 focus:ring-2 focus:ring-amber-200 focus:outline-none transition-all font-medium',
+                          formFieldLabel: 'text-neutral-700 text-sm font-semibold mb-2 block',
+                          formFieldHint: 'text-neutral-500 text-xs font-medium mt-1',
+                          dividerLine: 'bg-neutral-200/50',
+                          dividerText: 'text-neutral-600 text-xs font-semibold',
+                          footerActionLink:
+                            'text-amber-600 hover:text-orange-600 transition-colors font-semibold',
+                          headerTitle: 'hidden',
+                          headerSubtitle: 'hidden',
+                        },
+                        layout: {
+                          socialButtonsPlacement: 'bottom',
+                          socialButtonsVariant: 'blockButton',
+                        },
+                      }}
+                      redirectUrl="/"
+                      afterSignInUrl="/"
+                    />
+                  </motion.div>
+
+                  {/* Divider */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.65, duration: 0.6 }}
+                    className="mt-8 pt-8 border-t border-neutral-200/50"
+                  >
+                    <p className="text-center text-sm text-neutral-600 font-medium">
+                      New to Business Twin OS?{' '}
+                      <a
+                        href="/signup"
+                        className="text-amber-600 hover:text-orange-600 font-bold transition-colors"
+                      >
+                        Create account
+                      </a>
+                    </p>
+                  </motion.div>
+                </div>
               </div>
             </div>
-            <div className="text-left">
-              <h1 className="text-2xl font-black text-white tracking-tighter">Business Twin OS</h1>
-              <p className="text-sm text-slate-400 font-medium">AI Executive Intelligence</p>
-            </div>
+
+            {/* Trust Badges */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.75, duration: 0.6 }}
+              className="flex items-center justify-center gap-6 mt-8 text-xs font-medium text-neutral-600"
+            >
+              <div className="flex items-center gap-2">
+                <div className="w-1 h-1 rounded-full bg-green-500" />
+                Enterprise Security
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-1 h-1 rounded-full bg-green-500" />
+                99.99% Uptime
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-1 h-1 rounded-full bg-green-500" />
+                HIPAA Compliant
+              </div>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </div>
 
-        {/* Main Login Card */}
+        {/* RIGHT SECTION: Immersive Hero with Floating Cards */}
         <motion.div
-          initial={{ opacity: 0, y: 40, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.8 }}
-          className="w-full max-w-md z-10"
+          className="hidden lg:flex flex-col justify-center items-center px-12 py-0 relative overflow-hidden"
         >
-          {/* Premium Glassmorphism Card */}
-          <div className="relative group">
-            {/* Glow Border Effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600/20 via-cyan-600/20 to-purple-600/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-0 group-hover:opacity-100" />
-
-            {/* Background Blur Layers */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-slate-900/50 to-slate-950/80 backdrop-blur-2xl border border-slate-700/30" />
-
-            {/* Card Content */}
-            <div className="relative rounded-2xl bg-gradient-to-br from-slate-900/60 via-slate-950/60 to-black/80 backdrop-blur-3xl border border-slate-600/20 px-8 py-10 sm:px-10 shadow-2xl shadow-black/60">
-              {/* Header */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.35, duration: 0.6 }}
-                className="mb-8"
-              >
-                <h2 className="text-3xl font-black text-white mb-3 leading-tight">Welcome back</h2>
-                <p className="text-base text-slate-400">Sign in to your AI dashboard</p>
-              </motion.div>
-
-              {/* Clerk SignIn Component */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.45, duration: 0.6 }}
-                className="clerk-signin-wrapper space-y-4"
-              >
-                <SignIn
-                  appearance={{
-                    elements: {
-                      rootBox: 'w-full',
-                      card: 'bg-transparent shadow-none border-0 px-0',
-                      socialButtonsBlockButton:
-                        'w-full bg-gradient-to-r from-slate-800/40 to-slate-700/40 border border-slate-600/30 hover:from-slate-700/60 hover:to-slate-600/60 text-slate-100 hover:text-white h-12 rounded-xl transition-all duration-200 hover:border-slate-500/50 font-medium',
-                      formButtonPrimary:
-                        'w-full bg-gradient-to-r from-purple-600 via-purple-500 to-cyan-500 hover:from-purple-500 hover:via-purple-400 hover:to-cyan-400 hover:shadow-2xl hover:shadow-purple-500/40 h-12 rounded-xl transition-all duration-300 font-bold text-white',
-                      formFieldInput:
-                        'bg-slate-800/30 border border-slate-600/30 rounded-lg h-11 text-white placeholder:text-slate-500 focus:bg-slate-800/50 focus:border-slate-500/50 focus:ring-0 focus:outline-none transition-all font-medium',
-                      formFieldLabel: 'text-slate-200 text-sm font-semibold mb-2 block',
-                      formFieldHint: 'text-slate-500 text-xs font-medium mt-1',
-                      dividerLine: 'bg-slate-700/20',
-                      dividerText: 'text-slate-400 text-xs font-semibold',
-                      footerActionLink:
-                        'text-cyan-400 hover:text-cyan-300 transition-colors font-semibold',
-                      headerTitle: 'hidden',
-                      headerSubtitle: 'hidden',
-                    },
-                    layout: {
-                      socialButtonsPlacement: 'bottom',
-                      socialButtonsVariant: 'blockButton',
-                    },
-                  }}
-                  redirectUrl="/"
-                  afterSignInUrl="/"
-                />
-              </motion.div>
-
-              {/* Divider */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.55, duration: 0.6 }}
-                className="mt-8 pt-8 border-t border-slate-700/20"
-              >
-                <p className="text-center text-sm text-slate-400 font-medium">
-                  New here?{' '}
-                  <a
-                    href="/signup"
-                    className="text-cyan-400 hover:text-cyan-300 font-bold transition-colors"
-                  >
-                    Create account
-                  </a>
-                </p>
-              </motion.div>
-            </div>
+          {/* Hero Background Image */}
+          <div className="absolute inset-0 rounded-3xl mx-4 my-12 overflow-hidden">
+            <Image
+              src="/auth-hero.png"
+              alt="AI Team Collaboration"
+              fill
+              className="object-cover"
+              priority
+            />
+            {/* Dark Overlay for Better Text Contrast */}
+            <div className="absolute inset-0 bg-gradient-to-br from-neutral-900/40 via-amber-900/20 to-neutral-900/30" />
           </div>
 
-          {/* Bottom Text */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.65, duration: 0.6 }}
-            className="text-center text-xs text-slate-500 mt-8 font-medium"
-          >
-            Enterprise-grade AI intelligence platform
-          </motion.p>
-        </motion.div>
+          {/* Floating Glassmorphism Cards */}
+          <div className="relative w-full h-full flex items-center justify-center px-8">
+            {/* Top Left Card - AI Insights */}
+            <motion.div
+              animate={{
+                y: [0, -20, 0],
+                x: [0, -10, 0],
+              }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+              className="absolute top-20 left-8 w-72"
+            >
+              <div className="rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-2xl p-6">
+                <motion.div
+                  animate={{
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="flex items-center gap-3 mb-4"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold">
+                    ↗️
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-neutral-500 uppercase">Revenue Growth</p>
+                    <p className="text-xl font-black text-neutral-900">+27.4%</p>
+                  </div>
+                </motion.div>
+                <p className="text-xs text-neutral-600 font-medium">YoY business growth acceleration</p>
+              </div>
+            </motion.div>
 
-        {/* Floating Accent Elements */}
-        <motion.div
-          animate={{
-            y: [0, -25, 0],
-            x: [0, 5, 0],
-          }}
-          transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-32 right-20 w-1 h-1 bg-cyan-400/60 rounded-full blur-sm"
-        />
-        <motion.div
-          animate={{
-            y: [0, 25, 0],
-            x: [0, -5, 0],
-          }}
-          transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-          className="absolute bottom-40 left-20 w-1.5 h-1.5 bg-purple-400/50 rounded-full blur-sm"
-        />
-        <motion.div
-          animate={{
-            y: [0, 15, 0],
-            x: [0, -8, 0],
-          }}
-          transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-          className="absolute top-1/2 right-1/4 w-1 h-1 bg-cyan-300/40 rounded-full blur-sm"
-        />
+            {/* Middle Right Card - Analytics */}
+            <motion.div
+              animate={{
+                y: [0, 20, 0],
+                x: [0, 10, 0],
+              }}
+              transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+              className="absolute top-1/2 right-8 w-72 -translate-y-1/2"
+            >
+              <div className="rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-2xl p-6">
+                <motion.div
+                  animate={{
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+                  className="flex items-center gap-3 mb-4"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center text-white font-bold">
+                    📊
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-neutral-500 uppercase">AI Insights</p>
+                    <p className="text-xl font-black text-neutral-900">847 Alerts</p>
+                  </div>
+                </motion.div>
+                <p className="text-xs text-neutral-600 font-medium">Real-time market intelligence</p>
+              </div>
+            </motion.div>
+
+            {/* Bottom Left Card - Team Activity */}
+            <motion.div
+              animate={{
+                y: [0, 15, 0],
+                x: [0, -8, 0],
+              }}
+              transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+              className="absolute bottom-20 left-12 w-72"
+            >
+              <div className="rounded-2xl bg-white/85 backdrop-blur-xl border border-white/40 shadow-2xl p-6">
+                <motion.div
+                  animate={{
+                    scale: [1, 1.05, 1],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, delay: 2 }}
+                  className="flex items-center gap-3 mb-4"
+                >
+                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white font-bold">
+                    👥
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-neutral-500 uppercase">Team Activity</p>
+                    <p className="text-xl font-black text-neutral-900">24 Active</p>
+                  </div>
+                </motion.div>
+                <p className="text-xs text-neutral-600 font-medium">Team members online now</p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Floating Particles */}
+          <motion.div
+            animate={{
+              y: [0, -40, 0],
+              opacity: [0.3, 0.8, 0.3],
+            }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+            className="absolute top-1/4 right-1/4 w-2 h-2 bg-amber-400 rounded-full blur-sm"
+          />
+          <motion.div
+            animate={{
+              y: [0, 40, 0],
+              opacity: [0.3, 0.8, 0.3],
+            }}
+            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+            className="absolute bottom-1/4 left-1/4 w-1.5 h-1.5 bg-orange-400 rounded-full blur-sm"
+          />
+        </motion.div>
       </div>
+
+      {/* Footer Text - Mobile Responsive */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.85, duration: 0.6 }}
+        className="absolute bottom-0 left-0 right-0 lg:right-1/2 p-6 text-center lg:text-left"
+      >
+        <p className="text-xs font-semibold text-neutral-600">
+          Enterprise-grade AI intelligence for billion-dollar companies
+        </p>
+      </motion.div>
     </div>
   );
 }
