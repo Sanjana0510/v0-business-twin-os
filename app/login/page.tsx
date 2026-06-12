@@ -7,7 +7,43 @@ import { SignIn } from '@clerk/nextjs';
 export default function LoginPage() {
   return (
     <div className="w-full h-screen bg-[#0f172a] flex overflow-hidden">
-      {/* LEFT SIDE - Login Form */}
+      {/* LEFT SIDE - Image Background (Full Height) */}
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.7 }}
+        className="hidden lg:flex lg:w-1/2 relative overflow-hidden"
+      >
+        {/* Hero Image */}
+        <Image
+          src="/auth-hero.png"
+          alt="Business Team with AI Analytics"
+          fill
+          className="object-cover"
+          priority
+        />
+
+        {/* Dark Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/20" />
+
+        {/* Logo & Brand - Top Left */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="absolute top-8 left-8 z-20"
+        >
+          {/* Logo Background - Dark overlay for visibility */}
+          <div className="bg-black/40 backdrop-blur-sm rounded-xl p-3 inline-flex items-center gap-3">
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg">
+              <span className="text-white font-bold text-lg">T</span>
+            </div>
+            <span className="text-white font-bold text-lg">Business Twin OS</span>
+          </div>
+        </motion.div>
+      </motion.div>
+
+      {/* RIGHT SIDE - Login Form */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -80,42 +116,6 @@ export default function LoginPage() {
             Privacy Policy
           </a>
         </motion.p>
-      </motion.div>
-
-      {/* RIGHT SIDE - Image Background */}
-      <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.7 }}
-        className="hidden lg:flex lg:w-1/2 relative overflow-hidden"
-      >
-        {/* Hero Image */}
-        <Image
-          src="/auth-hero.png"
-          alt="Business Team with AI Analytics"
-          fill
-          className="object-cover"
-          priority
-        />
-
-        {/* Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/20" />
-
-        {/* Logo & Brand - Top Left */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="absolute top-8 left-8 z-20"
-        >
-          {/* Logo Background - Dark overlay for visibility */}
-          <div className="bg-black/40 backdrop-blur-sm rounded-xl p-3 inline-flex items-center gap-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg">
-              <span className="text-white font-bold text-lg">T</span>
-            </div>
-            <span className="text-white font-bold text-lg">Business Twin OS</span>
-          </div>
-        </motion.div>
       </motion.div>
 
       {/* Mobile Hero Image (Mobile/Tablet) */}
