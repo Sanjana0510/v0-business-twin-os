@@ -36,12 +36,12 @@ export default function LoginPage() {
       </div>
 
       {/* RIGHT SIDE - Login Form (50% width, full height) */}
-      <div className="w-full lg:w-1/2 h-screen bg-[#0f172a] flex items-center justify-center">
+      <div className="w-full lg:w-1/2 h-screen bg-[#0f172a] flex items-center justify-center p-4 sm:p-6 md:p-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="w-full max-w-md mx-4 bg-white rounded-2xl shadow-2xl shadow-black/40 p-8"
+          className="w-full max-w-md bg-white rounded-2xl shadow-2xl shadow-black/40 p-8"
         >
           {/* Clerk SignIn Component */}
           <div className="[&_.cl-rootBox]:bg-transparent [&_.cl-rootBox]:shadow-none [&_.cl-rootBox]:p-0 [&_.cl-card]:bg-transparent [&_.cl-card]:shadow-none [&_.cl-card]:border-0 [&_.cl-card]:p-0 [&_.cl-socialButtonsBlockButton]:w-full [&_.cl-socialButtonsBlockButton]:h-11 [&_.cl-socialButtonsBlockButton]:rounded-lg [&_.cl-socialButtonsBlockButton]:border [&_.cl-socialButtonsBlockButton]:border-slate-200 [&_.cl-socialButtonsBlockButton]:bg-white [&_.cl-socialButtonsBlockButton]:text-slate-900 [&_.cl-socialButtonsBlockButton]:font-medium [&_.cl-socialButtonsBlockButton]:hover:bg-slate-50 [&_.cl-socialButtonsBlockButton]:hover:border-slate-300 [&_.cl-socialButtonsBlockButton]:transition-all [&_.cl-socialButtonsBlockButton]:duration-200 [&_.cl-formButtonPrimary]:w-full [&_.cl-formButtonPrimary]:h-11 [&_.cl-formButtonPrimary]:bg-gradient-to-r [&_.cl-formButtonPrimary]:from-blue-600 [&_.cl-formButtonPrimary]:to-purple-600 [&_.cl-formButtonPrimary]:text-white [&_.cl-formButtonPrimary]:rounded-lg [&_.cl-formButtonPrimary]:font-semibold [&_.cl-formButtonPrimary]:hover:shadow-lg [&_.cl-formButtonPrimary]:hover:shadow-blue-500/30 [&_.cl-formButtonPrimary]:hover:scale-105 [&_.cl-formButtonPrimary]:transition-all [&_.cl-formButtonPrimary]:duration-200 [&_.cl-formButtonPrimary]:border-0 [&_.cl-formFieldInput]:bg-slate-50 [&_.cl-formFieldInput]:border [&_.cl-formFieldInput]:border-slate-200 [&_.cl-formFieldInput]:text-slate-900 [&_.cl-formFieldInput]:rounded-lg [&_.cl-formFieldInput]:placeholder:text-slate-500 [&_.cl-formFieldInput]:focus:bg-white [&_.cl-formFieldInput]:focus:border-blue-500 [&_.cl-formFieldInput]:focus:outline-none [&_.cl-formFieldInput]:focus:ring-2 [&_.cl-formFieldInput]:focus:ring-blue-500/20 [&_.cl-formFieldLabel]:text-slate-700 [&_.cl-formFieldLabel]:font-semibold [&_.cl-formFieldLabel]:text-sm [&_.cl-divider]:bg-slate-200 [&_.cl-dividerText]:text-slate-500 [&_.cl-dividerText]:text-sm [&_.cl-footerActionLink]:text-blue-600 [&_.cl-footerActionLink]:hover:text-blue-700 [&_.cl-footerActionLink]:font-medium">
@@ -85,12 +85,12 @@ export default function LoginPage() {
       </div>
 
       {/* Mobile - Full screen dark with form only */}
-      <div className="lg:hidden fixed inset-0 w-full h-screen bg-[#0f172a] flex items-center justify-center z-0">
+      <div className="lg:hidden fixed inset-0 w-full h-screen bg-[#0f172a] flex items-center justify-center z-0 p-4 sm:p-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="w-full max-w-md mx-4 bg-white rounded-2xl shadow-2xl shadow-black/40 p-8"
+          className="w-full max-w-md bg-white rounded-2xl shadow-2xl shadow-black/40 p-8"
         >
           {/* Clerk SignIn Component */}
           <div className="[&_.cl-rootBox]:bg-transparent [&_.cl-rootBox]:shadow-none [&_.cl-rootBox]:p-0 [&_.cl-card]:bg-transparent [&_.cl-card]:shadow-none [&_.cl-card]:border-0 [&_.cl-card]:p-0 [&_.cl-socialButtonsBlockButton]:w-full [&_.cl-socialButtonsBlockButton]:h-11 [&_.cl-socialButtonsBlockButton]:rounded-lg [&_.cl-socialButtonsBlockButton]:border [&_.cl-socialButtonsBlockButton]:border-slate-200 [&_.cl-socialButtonsBlockButton]:bg-white [&_.cl-socialButtonsBlockButton]:text-slate-900 [&_.cl-socialButtonsBlockButton]:font-medium [&_.cl-socialButtonsBlockButton]:hover:bg-slate-50 [&_.cl-socialButtonsBlockButton]:hover:border-slate-300 [&_.cl-socialButtonsBlockButton]:transition-all [&_.cl-socialButtonsBlockButton]:duration-200 [&_.cl-formButtonPrimary]:w-full [&_.cl-formButtonPrimary]:h-11 [&_.cl-formButtonPrimary]:bg-gradient-to-r [&_.cl-formButtonPrimary]:from-blue-600 [&_.cl-formButtonPrimary]:to-purple-600 [&_.cl-formButtonPrimary]:text-white [&_.cl-formButtonPrimary]:rounded-lg [&_.cl-formButtonPrimary]:font-semibold [&_.cl-formButtonPrimary]:hover:shadow-lg [&_.cl-formButtonPrimary]:hover:shadow-blue-500/30 [&_.cl-formButtonPrimary]:hover:scale-105 [&_.cl-formButtonPrimary]:transition-all [&_.cl-formButtonPrimary]:duration-200 [&_.cl-formButtonPrimary]:border-0 [&_.cl-formFieldInput]:bg-slate-50 [&_.cl-formFieldInput]:border [&_.cl-formFieldInput]:border-slate-200 [&_.cl-formFieldInput]:text-slate-900 [&_.cl-formFieldInput]:rounded-lg [&_.cl-formFieldInput]:placeholder:text-slate-500 [&_.cl-formFieldInput]:focus:bg-white [&_.cl-formFieldInput]:focus:border-blue-500 [&_.cl-formFieldInput]:focus:outline-none [&_.cl-formFieldInput]:focus:ring-2 [&_.cl-formFieldInput]:focus:ring-blue-500/20 [&_.cl-formFieldLabel]:text-slate-700 [&_.cl-formFieldLabel]:font-semibold [&_.cl-formFieldLabel]:text-sm [&_.cl-divider]:bg-slate-200 [&_.cl-dividerText]:text-slate-500 [&_.cl-dividerText]:text-sm [&_.cl-footerActionLink]:text-blue-600 [&_.cl-footerActionLink]:hover:text-blue-700 [&_.cl-footerActionLink]:font-medium">
