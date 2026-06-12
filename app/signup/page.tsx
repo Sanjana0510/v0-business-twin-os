@@ -1,166 +1,244 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import { Building2, Mail, Lock, ArrowRight, Globe, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-import { SignUp } from '@clerk/nextjs';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { AuthLayout } from '@/components/auth/auth-layout';
 
 export default function SignupPage() {
+  const [companyName, setCompanyName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    // Simulate API call - create account and assign company
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    // Redirect to dashboard after signup
+    window.location.href = '/';
+    setIsLoading(false);
+  };
+
   return (
-    <div className="flex h-screen w-full overflow-hidden bg-[#0f172a]">
-      {/* LEFT SIDE - Image (50% width, full height) */}
-      <div className="hidden lg:block lg:w-1/2 h-screen relative overflow-hidden">
-        {/* Hero Image */}
-        <Image
-          src="/auth-hero.png"
-          alt="AI Workspace"
-          fill
-          className="object-cover"
-          priority
-        />
+    <AuthLayout>
+      {/* Logo */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.1 }}
+        className="flex justify-center mb-8"
+      >
+        <div className="flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-primary to-secondary">
+          <span className="text-white font-bold text-lg">T</span>
+        </div>
+      </motion.div>
 
-        {/* Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-black/20" />
+      {/* Card */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="relative group w-full max-w-md"
+      >
+        {/* Background layers for premium depth */}
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-slate-800/40 to-slate-700/40 border border-slate-700/50" />
 
-        {/* Logo & Brand - Top Left */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="absolute top-8 left-8 z-20"
-        >
-          <div className="bg-black/40 backdrop-blur-sm rounded-xl p-3 inline-flex items-center gap-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0 shadow-lg">
-              <span className="text-white font-bold text-lg">T</span>
-            </div>
-            <span className="text-white font-bold text-lg">Business Twin OS</span>
-          </div>
-        </motion.div>
-
-        {/* Bottom Text */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="absolute bottom-12 left-8 right-8 z-20"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Create Your Vision</h2>
-          <p className="text-lg text-slate-200">AI-assisted workspace to craft and elevate your ideas.</p>
-        </motion.div>
-      </div>
-
-      {/* RIGHT SIDE - Signup Form (50% width, full height) */}
-      <div className="w-full lg:w-1/2 h-screen bg-[#0f172a] flex items-center justify-center p-4 sm:p-6 md:p-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="w-full max-w-md bg-[#1a2340] rounded-2xl shadow-2xl shadow-black/40 p-8 border border-slate-700/30"
-        >
+        {/* Main card */}
+        <div className="relative backdrop-blur-xl rounded-2xl border border-slate-700/80 bg-slate-900/60 p-8 shadow-2xl shadow-black/20">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-2xl md:text-3xl font-bold text-white mb-2">Create An Account</h1>
-            <p className="text-sm text-slate-400">Join thousands using Business Twin OS</p>
+            <h1 className="text-2xl font-bold text-white mb-2">Join Business Twin OS</h1>
+            <p className="text-sm text-slate-400">Create your company account and get instant access</p>
           </div>
 
-          {/* Clerk SignUp Component */}
-          <div className="[&_.cl-rootBox]:bg-transparent [&_.cl-rootBox]:shadow-none [&_.cl-rootBox]:p-0 [&_.cl-card]:bg-transparent [&_.cl-card]:shadow-none [&_.cl-card]:border-0 [&_.cl-card]:p-0 [&_.cl-socialButtonsBlockButton]:w-full [&_.cl-socialButtonsBlockButton]:h-11 [&_.cl-socialButtonsBlockButton]:rounded-lg [&_.cl-socialButtonsBlockButton]:border [&_.cl-socialButtonsBlockButton]:border-slate-600 [&_.cl-socialButtonsBlockButton]:bg-slate-800/40 [&_.cl-socialButtonsBlockButton]:text-slate-200 [&_.cl-socialButtonsBlockButton]:font-medium [&_.cl-socialButtonsBlockButton]:hover:bg-slate-700/60 [&_.cl-socialButtonsBlockButton]:hover:border-slate-500 [&_.cl-socialButtonsBlockButton]:transition-all [&_.cl-socialButtonsBlockButton]:duration-200 [&_.cl-formButtonPrimary]:w-full [&_.cl-formButtonPrimary]:h-11 [&_.cl-formButtonPrimary]:bg-gradient-to-r [&_.cl-formButtonPrimary]:from-yellow-500 [&_.cl-formButtonPrimary]:to-yellow-600 [&_.cl-formButtonPrimary]:text-slate-900 [&_.cl-formButtonPrimary]:rounded-lg [&_.cl-formButtonPrimary]:font-semibold [&_.cl-formButtonPrimary]:hover:shadow-lg [&_.cl-formButtonPrimary]:hover:shadow-yellow-500/30 [&_.cl-formButtonPrimary]:hover:scale-105 [&_.cl-formButtonPrimary]:transition-all [&_.cl-formButtonPrimary]:duration-200 [&_.cl-formButtonPrimary]:border-0 [&_.cl-formFieldInput]:bg-slate-800/40 [&_.cl-formFieldInput]:border [&_.cl-formFieldInput]:border-slate-600 [&_.cl-formFieldInput]:text-slate-100 [&_.cl-formFieldInput]:rounded-lg [&_.cl-formFieldInput]:placeholder:text-slate-600 [&_.cl-formFieldInput]:focus:bg-slate-800/60 [&_.cl-formFieldInput]:focus:border-blue-500 [&_.cl-formFieldInput]:focus:outline-none [&_.cl-formFieldInput]:focus:ring-2 [&_.cl-formFieldInput]:focus:ring-blue-500/20 [&_.cl-formFieldLabel]:text-slate-300 [&_.cl-formFieldLabel]:font-semibold [&_.cl-formFieldLabel]:text-sm [&_.cl-divider]:bg-slate-700/50 [&_.cl-dividerText]:text-slate-500 [&_.cl-dividerText]:text-sm [&_.cl-footerActionLink]:text-blue-400 [&_.cl-footerActionLink]:hover:text-blue-300">
-            <SignUp
-              appearance={{
-                elements: {
-                  rootBox: 'w-full',
-                  card: 'w-full bg-transparent shadow-none border-0',
-                  formButtonPrimary: 'w-full h-11 bg-gradient-to-r from-yellow-500 to-yellow-600 text-slate-900 rounded-lg font-semibold hover:shadow-lg hover:shadow-yellow-500/30 hover:scale-105 transition-all duration-200',
-                  socialButtonsBlockButton: 'w-full h-11 border border-slate-600 bg-slate-800/40 text-slate-200 font-medium rounded-lg hover:bg-slate-700/60 hover:border-slate-500 transition-all duration-200',
-                  formFieldInput: 'bg-slate-800/40 border border-slate-600 text-slate-100 rounded-lg focus:bg-slate-800/60 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 placeholder:text-slate-600',
-                  formFieldLabel: 'text-slate-300 font-semibold text-sm',
-                  dividerLine: 'bg-slate-700/50',
-                  dividerText: 'text-slate-500 text-sm',
-                  footerActionLink: 'text-blue-400 hover:text-blue-300 font-medium',
-                },
-                layout: {
-                  socialButtonsPlacement: 'top',
-                  socialButtonsVariant: 'blockButton',
-                },
-              }}
-              redirectUrl="/"
-            />
-          </div>
-
-          {/* Sign In Link */}
-          <div className="mt-6 text-center border-t border-slate-700/30 pt-6 text-sm text-slate-400">
-            Already have an account?{' '}
-            <Link href="/login" className="text-blue-400 hover:text-blue-300 font-medium transition-colors">
-              Sign in
-            </Link>
-          </div>
-
-          {/* Terms */}
-          <p className="text-xs text-slate-500 mt-6 text-center leading-relaxed">
-            By creating an account, you agree to our{' '}
-            <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors">
-              Terms of Service
-            </a>{' '}
-            and{' '}
-            <a href="#" className="text-blue-400 hover:text-blue-300 transition-colors">
-              Privacy Policy
-            </a>
-          </p>
-        </motion.div>
-      </div>
-
-      {/* Mobile - Full screen dark with form only */}
-      <div className="lg:hidden fixed inset-0 w-full h-screen bg-[#0f172a] flex items-center justify-center z-0 p-4 sm:p-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="w-full max-w-md bg-[#1a2340] rounded-2xl shadow-2xl shadow-black/40 p-8 border border-slate-700/30"
-        >
-          {/* Header */}
-          <div className="mb-8">
-            <div className="flex items-center justify-center mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold text-xl">T</span>
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="space-y-5">
+            {/* Company Name */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <label className="block text-xs font-medium text-slate-300 mb-2 uppercase tracking-wide">
+                Company name
+              </label>
+              <div className="relative">
+                <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                <Input
+                  type="text"
+                  placeholder="Your company name"
+                  value={companyName}
+                  onChange={(e) => setCompanyName(e.target.value)}
+                  className="pl-10 h-11 bg-slate-800/40 border-slate-700/50 text-slate-100 placeholder:text-slate-600"
+                  required
+                />
               </div>
-            </div>
-            <h1 className="text-2xl font-bold text-white mb-2 text-center">Create An Account</h1>
-            <p className="text-sm text-slate-400 text-center">Join Business Twin OS today</p>
-          </div>
+              <p className="text-xs text-slate-500 mt-1.5">Used to create your company workspace</p>
+            </motion.div>
 
-          {/* Clerk SignUp Component */}
-          <div className="[&_.cl-rootBox]:bg-transparent [&_.cl-rootBox]:shadow-none [&_.cl-rootBox]:p-0 [&_.cl-card]:bg-transparent [&_.cl-card]:shadow-none [&_.cl-card]:border-0 [&_.cl-card]:p-0 [&_.cl-socialButtonsBlockButton]:w-full [&_.cl-socialButtonsBlockButton]:h-11 [&_.cl-socialButtonsBlockButton]:rounded-lg [&_.cl-socialButtonsBlockButton]:border [&_.cl-socialButtonsBlockButton]:border-slate-600 [&_.cl-socialButtonsBlockButton]:bg-slate-800/40 [&_.cl-socialButtonsBlockButton]:text-slate-200 [&_.cl-socialButtonsBlockButton]:font-medium [&_.cl-socialButtonsBlockButton]:hover:bg-slate-700/60 [&_.cl-socialButtonsBlockButton]:hover:border-slate-500 [&_.cl-socialButtonsBlockButton]:transition-all [&_.cl-socialButtonsBlockButton]:duration-200 [&_.cl-formButtonPrimary]:w-full [&_.cl-formButtonPrimary]:h-11 [&_.cl-formButtonPrimary]:bg-gradient-to-r [&_.cl-formButtonPrimary]:from-yellow-500 [&_.cl-formButtonPrimary]:to-yellow-600 [&_.cl-formButtonPrimary]:text-slate-900 [&_.cl-formButtonPrimary]:rounded-lg [&_.cl-formButtonPrimary]:font-semibold [&_.cl-formButtonPrimary]:hover:shadow-lg [&_.cl-formButtonPrimary]:hover:shadow-yellow-500/30 [&_.cl-formButtonPrimary]:hover:scale-105 [&_.cl-formButtonPrimary]:transition-all [&_.cl-formButtonPrimary]:duration-200 [&_.cl-formButtonPrimary]:border-0 [&_.cl-formFieldInput]:bg-slate-800/40 [&_.cl-formFieldInput]:border [&_.cl-formFieldInput]:border-slate-600 [&_.cl-formFieldInput]:text-slate-100 [&_.cl-formFieldInput]:rounded-lg [&_.cl-formFieldInput]:placeholder:text-slate-600 [&_.cl-formFieldInput]:focus:bg-slate-800/60 [&_.cl-formFieldInput]:focus:border-blue-500 [&_.cl-formFieldInput]:focus:outline-none [&_.cl-formFieldInput]:focus:ring-2 [&_.cl-formFieldInput]:focus:ring-blue-500/20 [&_.cl-formFieldLabel]:text-slate-300 [&_.cl-formFieldLabel]:font-semibold [&_.cl-formFieldLabel]:text-sm [&_.cl-divider]:bg-slate-700/50 [&_.cl-dividerText]:text-slate-500 [&_.cl-dividerText]:text-sm [&_.cl-footerActionLink]:text-blue-400 [&_.cl-footerActionLink]:hover:text-blue-300">
-            <SignUp
-              appearance={{
-                elements: {
-                  rootBox: 'w-full',
-                  card: 'w-full bg-transparent shadow-none border-0',
-                  formButtonPrimary: 'w-full h-11 bg-gradient-to-r from-yellow-500 to-yellow-600 text-slate-900 rounded-lg font-semibold hover:shadow-lg hover:shadow-yellow-500/30 hover:scale-105 transition-all duration-200',
-                  socialButtonsBlockButton: 'w-full h-11 border border-slate-600 bg-slate-800/40 text-slate-200 font-medium rounded-lg hover:bg-slate-700/60 hover:border-slate-500 transition-all duration-200',
-                  formFieldInput: 'bg-slate-800/40 border border-slate-600 text-slate-100 rounded-lg focus:bg-slate-800/60 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 placeholder:text-slate-600',
-                  formFieldLabel: 'text-slate-300 font-semibold text-sm',
-                  dividerLine: 'bg-slate-700/50',
-                  dividerText: 'text-slate-500 text-sm',
-                  footerActionLink: 'text-blue-400 hover:text-blue-300 font-medium',
-                },
-                layout: {
-                  socialButtonsPlacement: 'top',
-                  socialButtonsVariant: 'blockButton',
-                },
-              }}
-              redirectUrl="/"
-            />
-          </div>
+            {/* Email */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.35 }}
+            >
+              <label className="block text-xs font-medium text-slate-300 mb-2 uppercase tracking-wide">
+                Email address
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                <Input
+                  type="email"
+                  placeholder="you@company.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="pl-10 h-11 bg-slate-800/40 border-slate-700/50 text-slate-100 placeholder:text-slate-600"
+                  required
+                />
+              </div>
+            </motion.div>
 
-          {/* Sign In Link */}
-          <div className="mt-6 text-center border-t border-slate-700/30 pt-6 text-sm text-slate-400">
+            {/* Password */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 }}
+            >
+              <label className="block text-xs font-medium text-slate-300 mb-2 uppercase tracking-wide">
+                Password
+              </label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                <Input
+                  type="password"
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="pl-10 h-11 bg-slate-800/40 border-slate-700/50 text-slate-100 placeholder:text-slate-600"
+                  required
+                />
+              </div>
+              <p className="text-xs text-slate-500 mt-1.5">At least 8 characters recommended</p>
+            </motion.div>
+
+            {/* Terms */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.45 }}
+              className="text-xs text-slate-400 leading-relaxed"
+            >
+              By creating an account, you agree to our{' '}
+              <Link href="#" className="text-primary hover:text-primary/80 transition-colors">
+                Terms of Service
+              </Link>{' '}
+              and{' '}
+              <Link href="#" className="text-primary hover:text-primary/80 transition-colors">
+                Privacy Policy
+              </Link>
+            </motion.div>
+
+            {/* Create Account button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+            >
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="w-full h-11 bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed text-base font-semibold"
+              >
+                {isLoading ? (
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                    className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full"
+                  />
+                ) : (
+                  <>
+                    Create account
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </>
+                )}
+              </Button>
+            </motion.div>
+
+            {/* Divider */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.55 }}
+              className="flex items-center gap-3 my-6"
+            >
+              <div className="flex-1 h-px bg-gradient-to-r from-slate-700 to-transparent" />
+              <span className="text-xs text-slate-500 font-medium">OR</span>
+              <div className="flex-1 h-px bg-gradient-to-l from-slate-700 to-transparent" />
+            </motion.div>
+
+            {/* Google signup */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+            >
+              <Button
+                type="button"
+                variant="outline"
+                className="w-full h-11 border-slate-700/50 bg-slate-800/40 hover:bg-slate-700/50 text-slate-200 hover:text-white transition-colors"
+              >
+                <Globe className="w-4 h-4 mr-2" />
+                Sign up with Google
+              </Button>
+            </motion.div>
+          </form>
+
+          {/* Footer */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.65 }}
+            className="mt-6 text-center text-sm text-slate-400"
+          >
             Already have an account?{' '}
-            <Link href="/login" className="text-blue-400 hover:text-blue-300 font-medium transition-colors">
+            <Link href="/login" className="text-primary hover:text-primary/80 font-semibold transition-colors">
               Sign in
             </Link>
-          </div>
-        </motion.div>
-      </div>
-    </div>
+          </motion.div>
+
+          {/* Back to home */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.7 }}
+            className="mt-4 pt-4 border-t border-slate-700/30"
+          >
+            <Link
+              href="/"
+              className="flex items-center justify-center gap-2 text-xs text-slate-500 hover:text-slate-400 transition-colors py-2"
+            >
+              <ArrowLeft className="w-3 h-3" />
+              Back to home
+            </Link>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      {/* Footer text */}
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.75 }}
+        className="text-center text-xs text-slate-500 mt-6"
+      >
+        Powered by Business Twin OS
+      </motion.p>
+    </AuthLayout>
   );
 }
