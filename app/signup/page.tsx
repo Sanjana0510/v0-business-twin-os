@@ -31,7 +31,7 @@ export default function SignupPage() {
           transition={{ duration: 0.7 }}
           className="flex flex-col items-center justify-center px-6 sm:px-8 md:px-12 py-12 bg-gradient-to-b from-[#1a1f3a]/60 to-[#0a0e27]/80"
         >
-          <div className="w-full max-w-md">
+          <div className="w-full max-w-2xl">
             {/* Welcome Heading */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -48,7 +48,7 @@ export default function SignupPage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="p-8 rounded-3xl border-2 border-purple-500/40 bg-gradient-to-br from-purple-900/15 via-blue-900/10 to-transparent backdrop-blur-2xl hover:border-purple-500/60 transition-all duration-300 group shadow-2xl shadow-purple-900/30 hover:shadow-purple-900/50"
+              className="p-12 rounded-3xl border-2 border-purple-500/40 bg-gradient-to-br from-purple-900/15 via-blue-900/10 to-transparent backdrop-blur-2xl hover:border-purple-500/60 transition-all duration-300 group shadow-2xl shadow-purple-900/30 hover:shadow-purple-900/50"
             >
               {/* Inner Glow */}
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-purple-500/0 via-pink-500/5 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg pointer-events-none" />
@@ -59,7 +59,15 @@ export default function SignupPage() {
                 <p className="text-sm text-slate-400 text-center mb-8">Join thousands of companies using Business Twin OS</p>
 
                 {/* Clerk SignUp Component */}
-                <div className="[&_.cl-rootBox]:bg-transparent [&_.cl-rootBox]:shadow-none [&_.cl-rootBox]:p-0 [&_.cl-card]:bg-transparent [&_.cl-card]:shadow-none [&_.cl-card]:border-0 [&_.cl-card]:p-0 [&_.cl-socialButtonsBlockButton]:w-full [&_.cl-socialButtonsBlockButton]:h-11 [&_.cl-socialButtonsBlockButton]:rounded-lg [&_.cl-socialButtonsBlockButton]:border [&_.cl-socialButtonsBlockButton]:border-slate-600 [&_.cl-socialButtonsBlockButton]:bg-slate-900/40 [&_.cl-socialButtonsBlockButton]:text-white [&_.cl-socialButtonsBlockButton]:font-medium [&_.cl-socialButtonsBlockButton]:hover:bg-slate-900/60 [&_.cl-socialButtonsBlockButton]:hover:border-slate-400 [&_.cl-socialButtonsBlockButton]:transition-all [&_.cl-socialButtonsBlockButton]:duration-200 [&_.cl-formButtonPrimary]:w-full [&_.cl-formButtonPrimary]:h-11 [&_.cl-formButtonPrimary]:bg-gradient-to-r [&_.cl-formButtonPrimary]:from-purple-600 [&_.cl-formButtonPrimary]:to-pink-600 [&_.cl-formButtonPrimary]:text-white [&_.cl-formButtonPrimary]:rounded-lg [&_.cl-formButtonPrimary]:font-bold [&_.cl-formButtonPrimary]:hover:shadow-lg [&_.cl-formButtonPrimary]:hover:shadow-purple-500/50 [&_.cl-formButtonPrimary]:transition-all [&_.cl-formButtonPrimary]:duration-200 [&_.cl-formButtonPrimary]:border-0 [&_.cl-formFieldInput]:bg-slate-900/40 [&_.cl-formFieldInput]:border-2 [&_.cl-formFieldInput]:border-slate-600 [&_.cl-formFieldInput]:text-white [&_.cl-formFieldInput]:rounded-lg [&_.cl-formFieldInput]:placeholder:text-slate-500 [&_.cl-formFieldInput]:focus:bg-slate-900/60 [&_.cl-formFieldInput]:focus:border-purple-400 [&_.cl-formFieldInput]:focus:outline-none [&_.cl-formFieldInput]:focus:ring-1 [&_.cl-formFieldInput]:focus:ring-purple-500/50 [&_.cl-formFieldLabel]:text-slate-300 [&_.cl-formFieldLabel]:font-medium [&_.cl-divider]:bg-slate-600 [&_.cl-dividerText]:text-slate-500 [&_.cl-dividerText]:text-xs [&_.cl-footerActionLink]:text-purple-400 [&_.cl-footerActionLink]:hover:text-purple-300">
+                <style>{`
+                  [data-testid="clerk-portal-footer"], 
+                  .cl-footer,
+                  .cl-footerPageLink,
+                  .cl-footerLinks {
+                    display: none !important;
+                  }
+                `}</style>
+                <div className="[&_.cl-rootBox]:bg-transparent [&_.cl-rootBox]:shadow-none [&_.cl-rootBox]:p-0 [&_.cl-card]:bg-transparent [&_.cl-card]:shadow-none [&_.cl-card]:border-0 [&_.cl-card]:p-0 [&_.cl-socialButtonsBlockButton]:w-full [&_.cl-socialButtonsBlockButton]:h-11 [&_.cl-socialButtonsBlockButton]:rounded-lg [&_.cl-socialButtonsBlockButton]:border [&_.cl-socialButtonsBlockButton]:border-slate-600 [&_.cl-socialButtonsBlockButton]:bg-slate-900/40 [&_.cl-socialButtonsBlockButton]:text-white [&_.cl-socialButtonsBlockButton]:font-medium [&_.cl-socialButtonsBlockButton]:hover:bg-slate-900/60 [&_.cl-socialButtonsBlockButton]:hover:border-slate-400 [&_.cl-socialButtonsBlockButton]:transition-all [&_.cl-socialButtonsBlockButton]:duration-200 [&_.cl-formButtonPrimary]:w-full [&_.cl-formButtonPrimary]:h-11 [&_.cl-formButtonPrimary]:bg-gradient-to-r [&_.cl-formButtonPrimary]:from-purple-600 [&_.cl-formButtonPrimary]:to-pink-600 [&_.cl-formButtonPrimary]:text-white [&_.cl-formButtonPrimary]:rounded-lg [&_.cl-formButtonPrimary]:font-bold [&_.cl-formButtonPrimary]:hover:shadow-lg [&_.cl-formButtonPrimary]:hover:shadow-purple-500/50 [&_.cl-formButtonPrimary]:transition-all [&_.cl-formButtonPrimary]:duration-200 [&_.cl-formButtonPrimary]:border-0 [&_.cl-formFieldInput]:bg-slate-900/40 [&_.cl-formFieldInput]:border-2 [&_.cl-formFieldInput]:border-slate-600 [&_.cl-formFieldInput]:text-white [&_.cl-formFieldInput]:rounded-lg [&_.cl-formFieldInput]:placeholder:text-slate-500 [&_.cl-formFieldInput]:focus:bg-slate-900/60 [&_.cl-formFieldInput]:focus:border-purple-400 [&_.cl-formFieldInput]:focus:outline-none [&_.cl-formFieldInput]:focus:ring-1 [&_.cl-formFieldInput]:focus:ring-purple-500/50 [&_.cl-formFieldLabel]:text-slate-300 [&_.cl-formFieldLabel]:font-medium [&_.cl-divider]:bg-slate-600 [&_.cl-dividerText]:text-slate-500 [&_.cl-dividerText]:text-xs [&_.cl-footerActionLink]:text-purple-400 [&_.cl-footerActionLink]:hover:text-purple-300 [&_.cl-footer]:hidden">
                   <SignUp
                     appearance={{
                       elements: {
