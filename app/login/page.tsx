@@ -25,16 +25,6 @@ export default function LoginPage() {
           </div>
           <span className="text-white font-bold text-lg">Business Twin OS</span>
         </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white text-sm font-bold shadow-lg shadow-purple-500/30">
-            SA
-          </div>
-        </motion.div>
       </header>
 
       {/* MAIN CONTENT */}
@@ -74,7 +64,10 @@ export default function LoginPage() {
                 <p className="text-sm text-slate-400 text-center mb-8">Welcome back! Please sign in to continue</p>
 
                 {/* Google Button */}
-                <button className="w-full py-3 px-4 border-2 border-slate-600 rounded-lg text-white font-medium hover:bg-slate-900/40 hover:border-slate-400 transition-all duration-200 flex items-center justify-center gap-2 mb-4">
+                <button 
+                  onClick={() => window.location.href = 'https://accounts.google.com/o/oauth2/v2/auth'}
+                  className="w-full py-3 px-4 border-2 border-slate-600 rounded-lg text-white font-medium hover:bg-slate-900/40 hover:border-slate-400 transition-all duration-200 flex items-center justify-center gap-2 mb-4"
+                >
                   <svg className="w-5 h-5" viewBox="0 0 24 24">
                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                     <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -128,7 +121,15 @@ export default function LoginPage() {
                 </div>
 
                 {/* Continue Button */}
-                <button className="w-full py-3 px-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg text-white font-bold hover:from-purple-700 hover:to-pink-700 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all duration-200 flex items-center justify-center gap-2">
+                <button 
+                  onClick={() => {
+                    if (email && password) {
+                      window.location.href = '/dashboard';
+                    }
+                  }}
+                  className="w-full py-3 px-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg text-white font-bold hover:from-purple-700 hover:to-pink-700 shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50"
+                  disabled={!email || !password}
+                >
                   Continue
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -166,15 +167,15 @@ export default function LoginPage() {
             <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e27]/90 via-[#0a0e27]/40 to-transparent" />
           </div>
 
-          {/* Analytics Cards Grid */}
-          <div className="relative z-10 w-full max-w-3xl grid grid-cols-3 gap-4 auto-rows-max">
+          {/* Analytics Cards Grid - Smaller cards for background visibility */}
+          <div className="relative z-10 w-full max-w-2xl grid grid-cols-3 gap-3 auto-rows-max">
             {/* Overview - Revenue Card */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1 }}
               whileHover={{ scale: 1.05 }}
-              className="col-span-1 p-5 rounded-xl border border-blue-500/40 bg-gradient-to-br from-blue-900/20 via-slate-900/10 to-transparent backdrop-blur-xl hover:border-blue-500/60 transition-all duration-300"
+              className="col-span-1 p-4 rounded-lg border border-blue-500/40 bg-gradient-to-br from-blue-900/20 via-slate-900/10 to-transparent backdrop-blur-xl hover:border-blue-500/60 transition-all duration-300"
             >
               <p className="text-xs text-slate-400 mb-2">Revenue</p>
               <p className="text-2xl font-bold text-white">$2.45M</p>
@@ -187,7 +188,7 @@ export default function LoginPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
               whileHover={{ scale: 1.05 }}
-              className="col-span-1 p-5 rounded-xl border border-purple-500/40 bg-gradient-to-br from-purple-900/20 via-slate-900/10 to-transparent backdrop-blur-xl hover:border-purple-500/60 transition-all duration-300 flex flex-col items-center justify-center"
+              className="col-span-1 p-4 rounded-lg border border-purple-500/40 bg-gradient-to-br from-purple-900/20 via-slate-900/10 to-transparent backdrop-blur-xl hover:border-purple-500/60 transition-all duration-300 flex flex-col items-center justify-center"
             >
               <div className="w-24 h-24 rounded-full border-4 border-purple-500 flex items-center justify-center mb-3">
                 <div className="text-center">
@@ -203,7 +204,7 @@ export default function LoginPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
               whileHover={{ scale: 1.05 }}
-              className="col-span-1 p-5 rounded-xl border border-pink-500/40 bg-gradient-to-br from-pink-900/20 via-slate-900/10 to-transparent backdrop-blur-xl hover:border-pink-500/60 transition-all duration-300"
+              className="col-span-1 p-4 rounded-lg border border-pink-500/40 bg-gradient-to-br from-pink-900/20 via-slate-900/10 to-transparent backdrop-blur-xl hover:border-pink-500/60 transition-all duration-300"
             >
               <p className="text-xs text-slate-400 mb-2">Revenue Overview</p>
               <p className="text-2xl font-bold text-white">$8.45M</p>
@@ -216,7 +217,7 @@ export default function LoginPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
               whileHover={{ scale: 1.05 }}
-              className="col-span-1 p-5 rounded-xl border border-cyan-500/40 bg-gradient-to-br from-cyan-900/20 via-slate-900/10 to-transparent backdrop-blur-xl hover:border-cyan-500/60 transition-all duration-300"
+              className="col-span-1 p-4 rounded-lg border border-cyan-500/40 bg-gradient-to-br from-cyan-900/20 via-slate-900/10 to-transparent backdrop-blur-xl hover:border-cyan-500/60 transition-all duration-300"
             >
               <p className="text-xs text-slate-400 mb-2">Growth Rate</p>
               <p className="text-2xl font-bold text-white">27.4%</p>
@@ -227,7 +228,7 @@ export default function LoginPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.5 }}
               whileHover={{ scale: 1.05 }}
-              className="col-span-1 row-span-2 p-6 rounded-xl border border-purple-500/40 bg-gradient-to-br from-purple-900/30 via-purple-900/10 to-transparent backdrop-blur-xl hover:border-purple-500/60 transition-all duration-300 flex flex-col items-center justify-center"
+              className="col-span-1 row-span-2 p-4 rounded-lg border border-purple-500/40 bg-gradient-to-br from-purple-900/30 via-purple-900/10 to-transparent backdrop-blur-xl hover:border-purple-500/60 transition-all duration-300 flex flex-col items-center justify-center"
             >
               <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center mb-4 shadow-lg shadow-purple-500/50">
                 <span className="text-white text-lg font-bold">⚡</span>
@@ -243,7 +244,7 @@ export default function LoginPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.6 }}
               whileHover={{ scale: 1.05 }}
-              className="col-span-1 row-span-2 p-6 rounded-xl border border-pink-500/40 bg-gradient-to-br from-pink-900/30 via-pink-900/10 to-transparent backdrop-blur-xl hover:border-pink-500/60 transition-all duration-300 flex flex-col items-center justify-center"
+              className="col-span-1 row-span-2 p-4 rounded-lg border border-pink-500/40 bg-gradient-to-br from-pink-900/30 via-pink-900/10 to-transparent backdrop-blur-xl hover:border-pink-500/60 transition-all duration-300 flex flex-col items-center justify-center"
             >
               <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-rose-600 rounded-lg flex items-center justify-center mb-4 shadow-lg shadow-pink-500/50">
                 <span className="text-white text-lg font-bold">📊</span>
@@ -259,7 +260,7 @@ export default function LoginPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.7 }}
               whileHover={{ scale: 1.05 }}
-              className="col-span-1 row-span-2 p-6 rounded-xl border border-cyan-500/40 bg-gradient-to-br from-cyan-900/30 via-cyan-900/10 to-transparent backdrop-blur-xl hover:border-cyan-500/60 transition-all duration-300 flex flex-col items-center justify-center"
+              className="col-span-1 row-span-2 p-4 rounded-lg border border-cyan-500/40 bg-gradient-to-br from-cyan-900/30 via-cyan-900/10 to-transparent backdrop-blur-xl hover:border-cyan-500/60 transition-all duration-300 flex flex-col items-center justify-center"
             >
               <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center mb-4 shadow-lg shadow-cyan-500/50">
                 <span className="text-white text-lg font-bold">📈</span>
@@ -275,7 +276,7 @@ export default function LoginPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.8 }}
               whileHover={{ scale: 1.05 }}
-              className="col-span-1 p-6 rounded-xl border border-emerald-500/40 bg-gradient-to-br from-emerald-900/30 via-emerald-900/10 to-transparent backdrop-blur-xl hover:border-emerald-500/60 transition-all duration-300 flex flex-col items-center justify-center"
+              className="col-span-1 p-4 rounded-lg border border-emerald-500/40 bg-gradient-to-br from-emerald-900/30 via-emerald-900/10 to-transparent backdrop-blur-xl hover:border-emerald-500/60 transition-all duration-300 flex flex-col items-center justify-center"
             >
               <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center mb-3 shadow-lg shadow-emerald-500/50">
                 <span className="text-white text-sm font-bold">💚</span>
