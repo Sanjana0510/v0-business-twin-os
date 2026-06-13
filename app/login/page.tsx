@@ -7,6 +7,16 @@ import { SignIn } from '@clerk/nextjs';
 export default function LoginPage() {
   return (
     <div className="min-h-screen w-full bg-gradient-to-br from-[#0a0e27] via-[#1a1f3a] to-[#0f1429] flex flex-col overflow-hidden">
+      <style>{`
+        [data-testid="clerk-portal-footer"], 
+        .cl-footer,
+        .cl-footerPageLink,
+        .cl-footerLinks,
+        p:contains("Secured by"),
+        p:contains("Development mode") {
+          display: none !important;
+        }
+      `}</style>
       {/* HEADER */}
       <header className="flex items-center justify-between px-8 py-4 border-b border-purple-500/20 bg-black/30 backdrop-blur-md">
         <motion.div
