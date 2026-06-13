@@ -31,13 +31,13 @@ export default function LoginPage() {
           transition={{ duration: 0.7 }}
           className="flex flex-col items-center justify-center px-6 sm:px-8 md:px-12 py-12 bg-gradient-to-b from-[#1a1f3a]/60 to-[#0a0e27]/80"
         >
-          <div className="w-full max-w-2xl">
+          <div className="w-full max-w-2xl flex flex-col items-center justify-center">
             {/* Welcome Heading */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-8"
+              className="mb-8 text-center"
             >
               <h1 className="text-4xl font-bold text-white mb-2">Welcome Back</h1>
               <p className="text-slate-300 text-sm">Access your AI Executive Intelligence Platform</p>
