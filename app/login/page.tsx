@@ -27,13 +27,13 @@ export default function LoginPage() {
       </div>
 
       {/* RIGHT SIDE - LOGIN */}
-      <div className="flex items-center justify-center h-full bg-[#0f172a]">
+      <div className="flex items-center justify-center h-full bg-[#0f172a] px-4 sm:px-6 md:px-8">
 
-        <div className="w-full max-w-md mx-auto bg-white rounded-xl shadow-xl p-6">
+        <div className="w-full max-w-2xl bg-white rounded-xl shadow-xl p-8">
 
           {/* Heading */}
-          <h1 className="text-2xl font-bold text-slate-900 mb-2">Welcome Back to Business Twin OS</h1>
-          <p className="text-slate-600 text-sm mb-6">Access your executive dashboard and business insights.</p>
+          <h1 className="text-3xl font-bold text-slate-900 mb-2">Welcome Back to Business Twin OS</h1>
+          <p className="text-slate-600 text-base mb-8">Access your executive dashboard and business insights.</p>
 
           {/* Clerk SignIn */}
           <SignIn
