@@ -31,6 +31,10 @@ export default function LoginPage() {
 
         <div className="w-full max-w-md mx-auto bg-white rounded-xl shadow-xl p-6">
 
+          {/* Heading */}
+          <h1 className="text-2xl font-bold text-slate-900 mb-2">Welcome Back to Business Twin OS</h1>
+          <p className="text-slate-600 text-sm mb-6">Access your executive dashboard and business insights.</p>
+
           {/* Clerk SignIn */}
           <SignIn
             appearance={{
@@ -42,16 +46,17 @@ export default function LoginPage() {
             redirectUrl="/dashboard"
           />
 
-          {/* Extra Links */}
-          <div className="mt-6 text-center border-t pt-4">
-            <a href="/forgot-password" className="text-blue-600 text-sm">
+          {/* Forgot Password Link - Inside Card */}
+          <div className="mt-4 text-center">
+            <a href="/forgot-password" className="text-blue-600 text-sm hover:text-blue-700 transition-colors">
               Forgot password?
             </a>
           </div>
 
-          <div className="mt-4 text-center text-sm">
+          {/* Sign Up Link - Only One */}
+          <div className="mt-4 text-center text-sm text-slate-600">
             Don&apos;t have an account?{" "}
-            <a href="/signup" className="text-blue-600 font-medium">
+            <a href="/signup" className="text-blue-600 font-medium hover:text-blue-700 transition-colors">
               Sign up
             </a>
           </div>
