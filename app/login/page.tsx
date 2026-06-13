@@ -141,15 +141,6 @@ export default function LoginPage() {
                     Sign up
                   </a>
                 </p>
-
-                {/* Security Footer */}
-                <div className="flex items-center justify-center gap-2 text-xs text-slate-500 mt-8 pt-6 border-t border-slate-700">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 1C6.48 1 2 5.48 2 11s4.48 10 10 10 10-4.48 10-10S17.52 1 12 1z" />
-                  </svg>
-                  Secured by business-twin-os
-                </div>
-                <p className="text-center text-xs text-red-500/70 mt-2">Development mode</p>
               </div>
             </motion.div>
           </div>
@@ -376,9 +367,6 @@ export default function LoginPage() {
       </div>
 
       {/* Footer */}
-      <footer className="border-t border-purple-500/20 bg-black/30 backdrop-blur-md px-8 py-3 text-center text-xs text-slate-500">
-        <p>© 2026 Business Twin OS. All rights reserved.</p>
-      </footer>
     </div>
   );
 }
