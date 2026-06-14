@@ -54,16 +54,19 @@ export default function LoginPage() {
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-purple-500/0 via-pink-500/5 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg pointer-events-none" />
 
               <div className="relative z-10">
-                {/* Form Heading */}
-                <h2 className="text-xl font-bold text-white text-center mb-2">Sign in to business-twin-os</h2>
-                <p className="text-sm text-slate-400 text-center mb-8">Welcome back! Please sign in to continue</p>
-
                 {/* Clerk SignIn Component */}
                 <style>{`
                   [data-testid="clerk-portal-footer"], 
                   .cl-footer,
                   .cl-footerPageLink,
-                  .cl-footerLinks {
+                  .cl-footerLinks,
+                  .cl-cardTitle,
+                  .cl-cardDescription,
+                  .cl-header {
+                    display: none !important;
+                  }
+                  h1.cl-cardTitle,
+                  p.cl-cardDescription {
                     display: none !important;
                   }
                 `}</style>
