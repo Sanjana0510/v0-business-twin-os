@@ -54,6 +54,12 @@ export default function SignupPage() {
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-purple-500/0 via-pink-500/5 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg pointer-events-none" />
 
               <div className="relative z-10">
+                {/* Card Heading */}
+                <div className="mb-6 text-center">
+                  <h2 className="text-2xl font-bold text-white mb-2">Create an account</h2>
+                  <p className="text-sm text-slate-400">Join Business Twin OS to start your AI-powered intelligence journey</p>
+                </div>
+
                 {/* Clerk SignUp Component */}
                 <style>{`
                   [data-testid="clerk-portal-footer"], 

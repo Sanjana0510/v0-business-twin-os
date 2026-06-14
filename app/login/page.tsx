@@ -54,6 +54,12 @@ export default function LoginPage() {
               <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-purple-500/0 via-pink-500/5 to-blue-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-lg pointer-events-none" />
 
               <div className="relative z-10">
+                {/* Card Heading */}
+                <div className="mb-6 text-center">
+                  <h2 className="text-2xl font-bold text-white mb-2">Sign in to Business Twin OS</h2>
+                  <p className="text-sm text-slate-400">Welcome back! Please sign in to continue</p>
+                </div>
+
                 {/* Clerk SignIn Component */}
                 <style>{`
                   [data-testid="clerk-portal-footer"], 
